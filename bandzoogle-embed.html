@@ -13,45 +13,67 @@
       --winxp: "Trebuchet MS", Verdana, Tahoma, sans-serif;
     }
 
+    * {
+      box-sizing: border-box;
+    }
+
     html,
     body {
       width: 100%;
+      max-width: none;
       margin: 0;
-      overflow-x: hidden;
+      padding: 0;
+      overflow: hidden;
       background: #090216;
+      font-family: var(--win98);
+      font-style: normal !important;
     }
 
     body {
       min-height: 0;
-      font-family: var(--win98);
+    }
+
+    .page-bg,
+    .noise {
+      position: fixed;
     }
 
     .site-header {
       position: relative;
       top: auto;
-      width: min(1840px, calc(100vw - 24px));
-      grid-template-columns: 220px 1fr auto;
-      margin: 12px auto 0;
-      padding: 9px 14px;
-      gap: 18px;
+      left: auto;
+      right: auto;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 8px clamp(12px, 1.2vw, 26px);
+      display: grid;
+      grid-template-columns: clamp(150px, 12vw, 230px) minmax(420px, 1fr) auto;
+      gap: clamp(12px, 1.25vw, 28px);
       font-family: var(--win95);
+      border-left: 0;
+      border-right: 0;
     }
 
     .brand img {
-      width: 198px;
+      width: clamp(150px, 11vw, 210px);
     }
 
     .main-nav {
-      gap: clamp(10px, 1.5vw, 24px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: clamp(14px, 2.1vw, 42px);
       font-family: var(--win98);
-      font-size: clamp(11px, .85vw, 14px);
-      letter-spacing: .06em;
+      font-size: clamp(11px, .82vw, 15px);
+      letter-spacing: .055em;
+      white-space: nowrap;
     }
 
     .header-actions button,
     .nav-toggle {
-      min-width: 38px;
-      min-height: 38px;
+      min-width: 36px;
+      min-height: 36px;
       font-size: 18px;
     }
 
@@ -59,57 +81,61 @@
     .live-card,
     .set-times {
       font-family: var(--win98);
+      font-style: normal !important;
     }
 
     .hero-copy .eyebrow,
     .jazzycat-copy strong {
       font-family: var(--win95);
-    }
-
-    .hero h1 {
-      font-family: var(--winxp);
-      letter-spacing: -.08em;
+      font-style: normal !important;
     }
 
     .hero.shell {
-      width: min(1840px, calc(100% - 24px));
+      width: 100%;
       max-width: none;
+      margin: 0;
+      padding-left: clamp(16px, 2.1vw, 42px);
+      padding-right: clamp(16px, 2.1vw, 42px);
     }
 
     .hero {
       min-height: 0;
       display: grid;
-      grid-template-columns: minmax(460px, 1.35fr) minmax(350px, 430px) minmax(380px, .85fr);
-      gap: clamp(16px, 2vw, 34px);
-      align-items: stretch;
-      padding: clamp(18px, 2.2vw, 36px) 0 clamp(24px, 3vw, 46px);
+      grid-template-columns: minmax(560px, 1.8fr) minmax(330px, 430px) minmax(330px, .85fr);
+      gap: clamp(18px, 2vw, 44px);
+      align-items: center;
+      padding-top: clamp(12px, 1.5vw, 26px);
+      padding-bottom: clamp(18px, 1.8vw, 34px);
     }
 
     .hero-copy {
-      max-width: 760px;
+      max-width: none;
       align-self: center;
     }
 
     .hero h1 {
-      font-size: clamp(62px, 6.1vw, 118px);
-      line-height: .8;
+      font-family: var(--winxp);
+      font-size: clamp(72px, 7.4vw, 142px);
+      line-height: .78;
+      letter-spacing: -.08em;
+      font-style: normal !important;
     }
 
     .official-copy {
-      max-width: 760px;
-      margin: 24px 0 0;
+      max-width: 980px;
+      margin: clamp(18px, 1.7vw, 30px) 0 0;
       color: var(--cream);
       font-family: var(--win98);
-      font-size: clamp(18px, 1.45vw, 25px);
-      font-style: normal;
-      line-height: 1.28;
+      font-size: clamp(18px, 1.55vw, 30px);
+      font-style: normal !important;
+      line-height: 1.25;
       text-shadow: 0 2px 0 rgba(0,0,0,.5), 0 0 22px rgba(255, 210, 91, .18);
     }
 
     .official-copy .copyright-line {
       color: var(--gold);
       font-family: var(--win95);
-      font-style: normal;
+      font-style: normal !important;
       font-weight: 900;
       letter-spacing: .04em;
       text-transform: uppercase;
@@ -117,7 +143,7 @@
     }
 
     .hero-buttons {
-      margin-top: 20px;
+      margin-top: clamp(16px, 1.35vw, 26px);
       gap: 12px;
     }
 
@@ -125,12 +151,13 @@
       min-height: 42px;
       padding: 0 18px;
       font-size: 12px;
-      font-style: normal !important;
     }
 
     .live-card {
       align-self: center;
-      padding: 18px;
+      width: 100%;
+      max-width: none;
+      padding: clamp(15px, 1.15vw, 22px);
     }
 
     .live-card::before {
@@ -144,18 +171,18 @@
 
     .live-card h2 {
       font-family: var(--win98);
-      font-size: 20px;
+      font-size: clamp(18px, 1.18vw, 23px);
       font-style: normal !important;
     }
 
     .stage-photo {
-      height: 82px;
+      height: clamp(68px, 5vw, 92px);
     }
 
     .live-card .artist {
       margin: 14px 0 4px;
       font-family: var(--winxp);
-      font-size: clamp(21px, 1.55vw, 29px);
+      font-size: clamp(20px, 1.5vw, 30px);
       font-style: normal !important;
       line-height: 1.03;
     }
@@ -164,7 +191,7 @@
       margin-bottom: 12px;
       color: #78ff9e;
       font-family: var(--win98);
-      font-size: 14px;
+      font-size: clamp(12px, .84vw, 15px);
       font-style: normal !important;
       line-height: 1.25;
     }
@@ -175,13 +202,13 @@
     }
 
     .set-times div {
-      padding: 8px 0;
+      padding: 7px 0;
       gap: 12px;
     }
 
     .set-times dt,
     .set-times dd {
-      font-size: 13px;
+      font-size: clamp(11px, .78vw, 13px);
     }
 
     .live-card .set-times div.is-headliner dd,
@@ -198,7 +225,7 @@
       display: grid;
       grid-template-columns: 1fr;
       min-height: 0;
-      padding: 18px;
+      padding: clamp(14px, 1.1vw, 22px);
       gap: 12px;
       border: 1px solid rgba(255, 210, 91, .42);
       background: linear-gradient(180deg, rgba(43, 13, 65, .66), rgba(7, 2, 19, .72));
@@ -210,8 +237,7 @@
     }
 
     .jazzycat-copy strong {
-      font-size: 18px;
-      font-style: normal !important;
+      font-size: clamp(16px, 1vw, 19px);
     }
 
     .jazzycat-copy small {
@@ -226,13 +252,13 @@
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      gap: clamp(4px, 1vw, 12px);
-      height: 118px;
+      gap: clamp(4px, .8vw, 12px);
+      height: clamp(92px, 6.5vw, 124px);
       overflow: visible;
     }
 
     .cat {
-      height: clamp(78px, 6.3vw, 116px);
+      height: clamp(76px, 6vw, 116px);
     }
 
     .tagline,
@@ -252,44 +278,50 @@
     }
 
     @media (max-width: 1180px) {
-      .site-header {
-        grid-template-columns: 190px 1fr auto;
+      html,
+      body {
+        overflow: hidden;
       }
 
-      .brand img {
-        width: 172px;
+      .site-header {
+        grid-template-columns: 170px 1fr auto;
       }
 
       .hero {
-        grid-template-columns: minmax(360px, 1fr) minmax(330px, 420px);
+        grid-template-columns: minmax(360px, 1fr) minmax(315px, 400px);
         align-items: center;
       }
 
       .jazzycat-band {
         grid-column: 1 / -1;
-        grid-template-columns: 230px 1fr;
+        grid-template-columns: 210px 1fr;
         align-items: end;
       }
 
       .cat-march {
         justify-content: flex-start;
-        height: 108px;
+        height: 100px;
       }
 
       .cat {
-        height: clamp(74px, 9vw, 108px);
+        height: clamp(72px, 8vw, 104px);
       }
     }
 
     @media (max-width: 760px) {
+      html,
+      body {
+        overflow-y: auto;
+      }
+
       .site-header {
-        width: min(100% - 16px, 620px);
         grid-template-columns: 1fr auto;
         gap: 10px;
+        padding: 8px;
       }
 
       .brand img {
-        width: 190px;
+        width: 188px;
       }
 
       .main-nav {
@@ -298,6 +330,7 @@
         flex-wrap: wrap;
         gap: 8px 14px;
         font-size: 11px;
+        white-space: normal;
       }
 
       .header-actions {
@@ -305,13 +338,14 @@
       }
 
       .hero.shell {
-        width: min(100% - 16px, 620px);
+        padding-left: 8px;
+        padding-right: 8px;
       }
 
       .hero {
         grid-template-columns: 1fr;
         gap: 14px;
-        padding: 18px 0 26px;
+        padding: 16px 0 24px;
       }
 
       .hero h1 {
