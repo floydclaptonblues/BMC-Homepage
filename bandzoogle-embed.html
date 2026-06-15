@@ -5,457 +5,625 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Balcony Music Club | New Orleans Live Music</title>
   <meta name="description" content="Balcony Music Club official homepage for live music, events, BMC Radio, gallery, and JazzyCat." />
-  <link rel="stylesheet" href="bmc_homepage_build/styles.css" />
   <style>
     :root {
+      --ink: #090216;
+      --deep: #140327;
+      --violet: #2a073e;
+      --purple: #b72cff;
+      --pink: #ff4ecb;
+      --gold: #ffd65f;
+      --cream: #fff3c6;
+      --green: #7cff9f;
+      --line: rgba(255, 214, 95, .34);
+      --magenta-line: rgba(255, 78, 203, .48);
+      --shadow: 0 22px 80px rgba(0, 0, 0, .55);
       --win95: "MS Sans Serif", "Microsoft Sans Serif", Arial, sans-serif;
       --win98: Tahoma, Verdana, Arial, sans-serif;
       --winxp: "Trebuchet MS", Verdana, Tahoma, sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     html,
     body {
       width: 100%;
+      min-width: 0;
       max-width: none;
       margin: 0;
       padding: 0;
       overflow: hidden;
       background: #090216;
+      color: var(--cream);
       font-family: var(--win98);
       font-style: normal !important;
     }
 
-    body {
-      min-height: 0;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(90deg, rgba(9, 2, 22, .94), rgba(18, 3, 39, .72), rgba(9, 2, 22, .94)),
+        url("bmc_homepage_build/assets/bmc-bg-tile.webp") center / cover no-repeat;
+      filter: saturate(1.14) contrast(1.02);
     }
 
-    .page-bg,
-    .noise {
+    body::after {
+      content: "";
       position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0 1px, transparent 1px 4px),
+        radial-gradient(circle at 82% 12%, rgba(255, 78, 203, .22), transparent 30%),
+        radial-gradient(circle at 18% 95%, rgba(255, 214, 95, .15), transparent 26%);
+      mix-blend-mode: screen;
+      opacity: .55;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .embed-page {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: none;
+      min-height: 650px;
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto 1fr;
     }
 
     .site-header {
-      position: relative;
-      top: auto;
-      left: auto;
-      right: auto;
       width: 100%;
       max-width: none;
-      margin: 0;
-      padding: 8px clamp(12px, 1.2vw, 26px);
+      min-width: 0;
       display: grid;
-      grid-template-columns: clamp(150px, 12vw, 230px) minmax(420px, 1fr) auto;
-      gap: clamp(12px, 1.25vw, 28px);
-      font-family: var(--win95);
-      border-left: 0;
-      border-right: 0;
+      grid-template-columns: minmax(190px, 300px) minmax(0, 1fr) auto;
+      align-items: center;
+      gap: clamp(16px, 2vw, 42px);
+      padding: 10px clamp(16px, 2.4vw, 46px);
+      border-bottom: 1px solid rgba(255, 214, 95, .24);
+      background: linear-gradient(90deg, rgba(14, 4, 34, .96), rgba(34, 5, 61, .84), rgba(14, 4, 34, .96));
+      box-shadow: 0 12px 36px rgba(0,0,0,.38);
     }
 
     .brand img {
-      width: clamp(150px, 11vw, 210px);
+      display: block;
+      width: clamp(190px, 16vw, 290px);
+      max-width: 100%;
+      height: auto;
+      image-rendering: auto;
     }
 
     .main-nav {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: clamp(14px, 2.1vw, 42px);
-      font-family: var(--win98);
-      font-size: clamp(11px, .82vw, 15px);
-      letter-spacing: .055em;
+      gap: clamp(18px, 2.4vw, 48px);
+      min-width: 0;
       white-space: nowrap;
+      font-family: var(--win98);
+      font-weight: 900;
+      letter-spacing: .055em;
+      text-transform: uppercase;
+      font-size: clamp(12px, .84vw, 16px);
+      text-shadow: 0 2px 0 #000;
     }
 
-    .header-actions button,
-    .nav-toggle {
-      min-width: 36px;
-      min-height: 36px;
+    .main-nav a {
+      position: relative;
+      padding: 8px 0;
+      color: var(--cream);
+    }
+
+    .main-nav a.active,
+    .main-nav a:hover { color: var(--gold); }
+
+    .main-nav a.active::after,
+    .main-nav a:hover::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--pink));
+      box-shadow: 0 0 14px rgba(255, 78, 203, .5);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .header-actions span {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 78, 203, .46);
+      color: var(--cream);
+      background: rgba(51, 11, 68, .62);
+      box-shadow: inset 0 0 18px rgba(255, 78, 203, .14);
       font-size: 18px;
     }
 
-    .btn,
-    .live-card,
-    .set-times {
-      font-family: var(--win98);
-      font-style: normal !important;
-    }
-
-    .hero-copy .eyebrow,
-    .jazzycat-copy strong {
-      font-family: var(--win95);
-      font-style: normal !important;
-    }
-
-    .hero.shell {
+    .hero {
       width: 100%;
       max-width: none;
-      margin: 0;
-      padding-left: clamp(16px, 2.1vw, 42px);
-      padding-right: clamp(16px, 2.1vw, 42px);
-    }
-
-    .hero {
+      min-width: 0;
       min-height: 0;
+      margin: 0;
+      padding: clamp(16px, 1.8vw, 34px) clamp(18px, 2.5vw, 52px) clamp(18px, 2vw, 38px);
       display: grid;
-      grid-template-columns: minmax(560px, 1.8fr) minmax(330px, 430px) minmax(330px, .85fr);
+      grid-template-columns: minmax(480px, 1.55fr) minmax(330px, 440px) minmax(290px, .72fr);
       gap: clamp(18px, 2vw, 44px);
       align-items: center;
-      padding-top: clamp(12px, 1.5vw, 26px);
-      padding-bottom: clamp(18px, 1.8vw, 34px);
     }
 
-    .hero-copy {
-      max-width: none;
-      align-self: center;
+    .hero-copy,
+    .live-card,
+    .jazzycat-band {
+      min-width: 0;
     }
 
-    .hero h1 {
+    .eyebrow {
+      margin: 0 0 10px;
+      font-family: var(--win95);
+      font-size: clamp(13px, 1vw, 19px);
+      font-weight: 900;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-shadow: 0 2px 0 #000;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 980px;
       font-family: var(--winxp);
-      font-size: clamp(72px, 7.4vw, 142px);
+      font-size: clamp(70px, 7.4vw, 140px);
       line-height: .78;
       letter-spacing: -.08em;
-      font-style: normal !important;
+      text-transform: uppercase;
+      color: transparent;
+      background: linear-gradient(180deg, #ff5fd3 4%, #ffd05f 38%, #25c97a 69%, #20b4ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-shadow: 0 8px 0 rgba(27, 8, 76, .88), 0 0 26px rgba(255, 78, 203, .34);
     }
 
     .official-copy {
-      max-width: 980px;
-      margin: clamp(18px, 1.7vw, 30px) 0 0;
-      color: var(--cream);
+      max-width: 1040px;
+      margin: clamp(16px, 1.6vw, 28px) 0 0;
       font-family: var(--win98);
       font-size: clamp(18px, 1.55vw, 30px);
-      font-style: normal !important;
       line-height: 1.25;
-      text-shadow: 0 2px 0 rgba(0,0,0,.5), 0 0 22px rgba(255, 210, 91, .18);
+      color: var(--cream);
+      text-shadow: 0 2px 0 rgba(0,0,0,.66), 0 0 20px rgba(255, 214, 95, .15);
     }
 
-    .official-copy .copyright-line {
+    .copyright-line {
       color: var(--gold);
       font-family: var(--win95);
-      font-style: normal !important;
       font-weight: 900;
       letter-spacing: .04em;
       text-transform: uppercase;
-      white-space: normal;
     }
 
     .hero-buttons {
-      margin-top: clamp(16px, 1.35vw, 26px);
+      display: flex;
+      flex-wrap: wrap;
       gap: 12px;
+      margin-top: clamp(16px, 1.4vw, 26px);
     }
 
     .btn {
-      min-height: 42px;
-      padding: 0 18px;
-      font-size: 12px;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 22px;
+      border: 1px solid rgba(255,255,255,.2);
+      font-family: var(--win98);
+      font-size: clamp(12px, .88vw, 15px);
+      font-weight: 900;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 0 rgba(0,0,0,.5);
+      box-shadow: 0 12px 28px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.38);
+    }
+
+    .btn.gold {
+      color: #1a0826;
+      background: linear-gradient(180deg, #fff49b, #ffbe32 60%, #ff8b1c);
+    }
+
+    .btn.purple {
+      color: #fff;
+      background: linear-gradient(180deg, #ef6cff, #a727df 55%, #6c10b4);
+    }
+
+    .btn.green {
+      color: #fff;
+      background: linear-gradient(180deg, #21d36b, #10a64d 65%, #057c35);
+    }
+
+    .btn.wide { width: 100%; }
+
+    .live-card,
+    .jazzycat-band {
+      position: relative;
+      border: 1px solid var(--magenta-line);
+      background: linear-gradient(180deg, rgba(57, 9, 73, .82), rgba(18, 2, 35, .9));
+      box-shadow: var(--shadow), inset 0 0 0 1px rgba(255,255,255,.05);
     }
 
     .live-card {
-      align-self: center;
-      width: 100%;
-      max-width: none;
-      padding: clamp(15px, 1.15vw, 22px);
+      padding: clamp(16px, 1.2vw, 24px);
     }
 
-    .live-card::before {
-      inset: 5px;
+    .live-card::before,
+    .jazzycat-band::before {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      pointer-events: none;
+      border: 1px solid rgba(255, 78, 203, .46);
     }
 
     .panel-title {
-      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       gap: 12px;
+      margin-bottom: 14px;
+      color: var(--gold);
     }
 
-    .live-card h2 {
+    .panel-title h2 {
+      margin: 0;
       font-family: var(--win98);
-      font-size: clamp(18px, 1.18vw, 23px);
-      font-style: normal !important;
+      font-size: clamp(20px, 1.35vw, 28px);
+      letter-spacing: .08em;
+      text-transform: uppercase;
     }
 
     .stage-photo {
-      height: clamp(68px, 5vw, 92px);
+      width: 100%;
+      height: clamp(78px, 5.5vw, 108px);
+      border: 1px solid rgba(255, 78, 203, .52);
+      background: linear-gradient(90deg, rgba(46,0,50,.22), rgba(255,255,255,.08)), url("bmc_homepage_build/assets/gallery-3.jpg") center / cover no-repeat;
     }
 
-    .live-card .artist {
-      margin: 14px 0 4px;
+    .artist {
+      margin: 16px 0 5px;
       font-family: var(--winxp);
-      font-size: clamp(20px, 1.5vw, 30px);
-      font-style: normal !important;
+      font-size: clamp(22px, 1.65vw, 34px);
       line-height: 1.03;
+      font-weight: 900;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-shadow: 0 3px 0 #000;
     }
 
-    .live-card .genre {
-      margin-bottom: 12px;
-      color: #78ff9e;
-      font-family: var(--win98);
-      font-size: clamp(12px, .84vw, 15px);
-      font-style: normal !important;
+    .genre {
+      margin: 0 0 14px;
+      color: var(--green);
+      font-size: clamp(13px, .9vw, 16px);
       line-height: 1.25;
+      font-weight: 700;
     }
 
     .set-times {
-      margin-bottom: 14px;
-      font-style: normal !important;
+      margin: 0 0 16px;
+      font-family: var(--win98);
     }
 
     .set-times div {
+      display: grid;
+      grid-template-columns: minmax(112px, .86fr) minmax(0, 1fr);
+      gap: 14px;
       padding: 7px 0;
-      gap: 12px;
+      border-bottom: 1px dotted rgba(255,255,255,.2);
     }
 
     .set-times dt,
     .set-times dd {
-      font-size: clamp(11px, .78vw, 13px);
+      margin: 0;
+      font-size: clamp(12px, .84vw, 14px);
+      font-weight: 900;
     }
 
-    .live-card .set-times div.is-headliner dd,
-    .live-card .set-times div.is-headliner dt {
-      color: var(--gold);
+    .set-times dd {
+      text-align: right;
+      text-transform: uppercase;
     }
+
+    .set-times .is-headliner dt,
+    .set-times .is-headliner dd { color: var(--gold); }
 
     .jazzycat-band {
-      position: relative !important;
-      left: auto !important;
-      right: auto !important;
-      bottom: auto !important;
-      align-self: center;
       display: grid;
-      grid-template-columns: 1fr;
-      min-height: 0;
-      padding: clamp(14px, 1.1vw, 22px);
-      gap: 12px;
-      border: 1px solid rgba(255, 210, 91, .42);
-      background: linear-gradient(180deg, rgba(43, 13, 65, .66), rgba(7, 2, 19, .72));
-      box-shadow: var(--shadow), inset 0 0 0 1px rgba(255,255,255,.04);
+      grid-template-rows: auto 1fr;
+      gap: 14px;
+      align-self: stretch;
+      padding: clamp(16px, 1.2vw, 24px);
+      overflow: hidden;
     }
 
     .jazzycat-copy {
       text-align: left;
+      position: relative;
+      z-index: 2;
     }
 
+    .paw { font-size: 28px; display: block; }
+
     .jazzycat-copy strong {
-      font-size: clamp(16px, 1vw, 19px);
+      display: block;
+      margin: 4px 0;
+      font-family: var(--win95);
+      font-size: clamp(16px, 1.1vw, 21px);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-shadow: 0 2px 0 #000;
     }
 
     .jazzycat-copy small {
+      display: block;
+      color: var(--cream);
       font-size: 13px;
-    }
-
-    .paw {
-      font-size: 26px;
+      line-height: 1.25;
     }
 
     .cat-march {
       display: flex;
-      justify-content: center;
       align-items: flex-end;
-      gap: clamp(4px, .8vw, 12px);
-      height: clamp(92px, 6.5vw, 124px);
-      overflow: visible;
+      justify-content: center;
+      gap: clamp(4px, .65vw, 10px);
+      min-height: 120px;
     }
 
     .cat {
-      height: clamp(76px, 6vw, 116px);
+      width: auto;
+      height: clamp(78px, 6vw, 116px);
+      object-fit: contain;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.55));
     }
 
-    .tagline,
-    .lede,
-    .genre,
-    .artist,
-    .set-times,
-    .btn,
-    .main-nav a {
-      font-style: normal !important;
-    }
+    .cat-two,
+    .cat-four { transform: translateY(-8px); }
+    .cat-three { transform: translateY(4px); }
 
-    .site-footer,
-    .dashboard,
-    .bandzoogle-embed-spacer {
-      display: none !important;
-    }
-
-    @media (max-width: 1180px) {
-      html,
-      body {
-        overflow: hidden;
-      }
-
+    @media (max-width: 1250px) {
       .site-header {
-        grid-template-columns: 170px 1fr auto;
+        grid-template-columns: minmax(160px, 240px) minmax(0, 1fr);
       }
+
+      .header-actions { display: none; }
 
       .hero {
-        grid-template-columns: minmax(360px, 1fr) minmax(315px, 400px);
-        align-items: center;
+        grid-template-columns: minmax(420px, 1.2fr) minmax(315px, 410px);
       }
 
       .jazzycat-band {
         grid-column: 1 / -1;
-        grid-template-columns: 210px 1fr;
-        align-items: end;
+        grid-template-columns: 230px minmax(0, 1fr);
+        grid-template-rows: auto;
+        align-items: center;
       }
 
-      .cat-march {
-        justify-content: flex-start;
-        height: 100px;
-      }
-
-      .cat {
-        height: clamp(72px, 8vw, 104px);
-      }
+      .cat-march { min-height: 96px; }
     }
 
     @media (max-width: 760px) {
       html,
       body {
-        overflow-y: auto;
+        overflow: hidden;
+      }
+
+      body::before {
+        background:
+          linear-gradient(180deg, rgba(9, 2, 22, .93), rgba(18, 3, 39, .84)),
+          url("bmc_homepage_build/assets/bmc-bg-tile.webp") center top / cover no-repeat;
+      }
+
+      .embed-page {
+        min-height: 820px;
+        grid-template-rows: auto 1fr;
       }
 
       .site-header {
-        grid-template-columns: 1fr auto;
-        gap: 10px;
-        padding: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 12px;
       }
 
       .brand img {
-        width: 188px;
+        width: min(86vw, 345px);
       }
 
-      .main-nav {
-        grid-column: 1 / -1;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        gap: 8px 14px;
-        font-size: 11px;
-        white-space: normal;
-      }
-
+      .main-nav,
       .header-actions {
-        display: none;
-      }
-
-      .hero.shell {
-        padding-left: 8px;
-        padding-right: 8px;
+        display: none !important;
       }
 
       .hero {
+        display: grid;
         grid-template-columns: 1fr;
-        gap: 14px;
-        padding: 16px 0 24px;
+        gap: 12px;
+        padding: 12px 12px 18px;
       }
 
-      .hero h1 {
-        font-size: clamp(52px, 17vw, 82px);
+      .hero-copy {
+        padding: 12px;
+        border: 1px solid var(--line);
+        background: rgba(8, 2, 23, .72);
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,.03);
+      }
+
+      .eyebrow,
+      h1 {
+        display: none;
       }
 
       .official-copy {
-        margin-top: 18px;
-        font-size: clamp(16px, 4.6vw, 21px);
+        margin: 0;
+        font-size: clamp(16px, 4.3vw, 20px);
+        line-height: 1.28;
+        color: rgba(255, 243, 198, .96);
       }
 
-      .live-card {
-        padding: 16px;
+      .copyright-line {
+        display: inline;
+        letter-spacing: .02em;
       }
 
-      .stage-photo {
-        height: 74px;
+      .hero-buttons {
+        margin-top: 12px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
       }
 
-      .jazzycat-band {
-        grid-template-columns: 1fr;
-        padding: 14px;
-      }
-
-      .jazzycat-copy {
+      .btn {
+        min-height: 48px;
+        padding: 0 10px;
+        font-size: 12px;
         text-align: center;
       }
 
-      .cat-march {
-        height: 96px;
+      .live-card {
+        padding: 16px 14px;
       }
 
-      .cat {
-        height: clamp(64px, 18vw, 92px);
+      .live-card::before {
+        inset: 6px;
       }
+
+      .panel-title {
+        margin-bottom: 12px;
+      }
+
+      .panel-title h2 {
+        font-size: clamp(22px, 7vw, 30px);
+      }
+
+      .stage-photo {
+        height: 88px;
+      }
+
+      .artist {
+        margin-top: 14px;
+        font-size: clamp(22px, 7.4vw, 34px);
+      }
+
+      .genre {
+        font-size: clamp(14px, 4vw, 17px);
+      }
+
+      .set-times div {
+        grid-template-columns: 1fr;
+        gap: 2px;
+        padding: 8px 0;
+      }
+
+      .set-times dd {
+        text-align: left;
+      }
+
+      .set-times dt,
+      .set-times dd {
+        font-size: 14px;
+      }
+
+      .jazzycat-band {
+        display: none;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .embed-page { min-height: 860px; }
+      .hero-buttons { grid-template-columns: 1fr; }
+      .stage-photo { height: 78px; }
     }
   </style>
 </head>
 <body>
-  <div class="page-bg" aria-hidden="true"></div>
-  <div class="noise" aria-hidden="true"></div>
+  <div class="embed-page">
+    <header class="site-header">
+      <a class="brand" href="https://floydclaptonblues.github.io/BMC-Homepage/" target="_blank" rel="noopener" aria-label="Balcony Music Club home">
+        <img src="bmc_homepage_build/assets/bmc-logo-pixel.png" alt="Balcony Music Club" />
+      </a>
 
-  <header class="site-header">
-    <a class="brand" href="https://floydclaptonblues.github.io/BMC-Homepage/" target="_blank" rel="noopener" aria-label="Balcony Music Club home">
-      <img src="bmc_homepage_build/assets/bmc-logo-pixel.png" alt="Balcony Music Club" />
-    </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="https://floydclaptonblues.github.io/BMC-Homepage/" target="_blank" rel="noopener" class="active">Home</a>
+        <a href="https://floydclaptonblues.github.io/UpcomingShows/" target="_blank" rel="noopener">Shows</a>
+        <a href="https://www.balconymusicclub.com/host-your-event" target="_blank" rel="noopener">Host Your Event</a>
+        <a href="https://www.balconymusicclub.com/store" target="_blank" rel="noopener">Store</a>
+        <a href="https://www.balconymusicclub.com/ask-jazzycat" target="_blank" rel="noopener">Ask JazzyCat</a>
+      </nav>
 
-    <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
-
-    <nav class="main-nav" aria-label="Primary navigation">
-      <a href="https://floydclaptonblues.github.io/BMC-Homepage/" target="_blank" rel="noopener" class="active">Home</a>
-      <a href="https://floydclaptonblues.github.io/UpcomingShows/" target="_blank" rel="noopener">Shows</a>
-      <a href="https://www.balconymusicclub.com/host-your-event" target="_blank" rel="noopener">Host Your Event</a>
-      <a href="https://www.balconymusicclub.com/store" target="_blank" rel="noopener">Store</a>
-      <a href="https://www.balconymusicclub.com/ask-jazzycat" target="_blank" rel="noopener">Ask JazzyCat</a>
-    </nav>
-
-    <div class="header-actions">
-      <button aria-label="Search">⌕</button>
-      <button aria-label="Music">♫</button>
-    </div>
-  </header>
-
-  <main id="home">
-    <section class="hero shell">
-      <div class="hero-copy">
-        <p class="eyebrow">Welcome to</p>
-        <h1>Balcony<br />Music Club</h1>
-        <p class="tagline official-copy">Welcome to the official website of Balcony Music Club. Located in the heart of the French Quarter - <span class="copyright-line">© THE CENTER OF THE UNIVERSE BMC 2026</span> - Browse and enjoy.</p>
-        <div class="hero-buttons">
-          <a class="btn gold" href="#live-tonight">Live Tonight ♪</a>
-          <a class="btn purple" href="https://floydclaptonblues.github.io/UpcomingShows/" target="_blank" rel="noopener">View Full Schedule ▣</a>
-        </div>
+      <div class="header-actions" aria-hidden="true">
+        <span>⌕</span>
+        <span>♫</span>
       </div>
+    </header>
 
-      <aside class="live-card" id="live-tonight" aria-labelledby="live-heading">
-        <div class="panel-title">
-          <span>✦</span>
-          <h2 id="live-heading">Live Tonight</h2>
-          <span>✦</span>
+    <main id="home">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Welcome to</p>
+          <h1>Balcony<br />Music Club</h1>
+          <p class="official-copy">Welcome to the official website of Balcony Music Club. Located in the heart of the French Quarter - <span class="copyright-line">© THE CENTER OF THE UNIVERSE BMC 2026</span> - Browse and enjoy.</p>
+          <div class="hero-buttons">
+            <a class="btn gold" href="#live-tonight">Live Tonight ♪</a>
+            <a class="btn purple" href="https://floydclaptonblues.github.io/UpcomingShows/" target="_blank" rel="noopener">View Full Schedule ▣</a>
+          </div>
         </div>
-        <div class="stage-photo"></div>
-        <p class="artist" data-live-title>Loading Schedule…</p>
-        <p class="genre" data-live-subtitle>Tonight’s lineup and upcoming dates refresh automatically. Times and artists subject to change.</p>
-        <dl class="set-times" data-live-events>
-          <div><dt>Schedule</dt><dd>Updating</dd></div>
-          <div><dt>Status</dt><dd>Loading</dd></div>
-          <div><dt>Venue</dt><dd>504 Esplanade</dd></div>
-          <div><dt>City</dt><dd>New Orleans</dd></div>
-        </dl>
-        <a class="btn green wide" href="https://floydclaptonblues.github.io/UpcomingShows/" target="_blank" rel="noopener">See Upcoming Shows ↓</a>
-      </aside>
 
-      <section class="jazzycat-band" id="jazzycat" aria-label="JazzyCat marching quartet">
-        <div class="jazzycat-copy">
-          <span class="paw">🐾</span>
-          <strong>Meet JazzyCat</strong>
-          <small>Our house band never takes a night off.</small>
-        </div>
-        <div class="cat-march" aria-hidden="true">
-          <img src="bmc_homepage_build/assets/jazzycat-1.png" alt="" class="cat cat-one" />
-          <img src="bmc_homepage_build/assets/jazzycat-2.png" alt="" class="cat cat-two" />
-          <img src="bmc_homepage_build/assets/jazzycat-3.png" alt="" class="cat cat-three" />
-          <img src="bmc_homepage_build/assets/jazzycat-4.png" alt="" class="cat cat-four" />
-        </div>
+        <aside class="live-card" id="live-tonight" aria-labelledby="live-heading">
+          <div class="panel-title">
+            <span>✦</span>
+            <h2 id="live-heading">Live Tonight</h2>
+            <span>✦</span>
+          </div>
+          <div class="stage-photo"></div>
+          <p class="artist" data-live-title>Loading Schedule…</p>
+          <p class="genre" data-live-subtitle>Tonight’s lineup and upcoming dates refresh automatically. Times and artists subject to change.</p>
+          <dl class="set-times" data-live-events>
+            <div><dt>Schedule</dt><dd>Updating</dd></div>
+            <div><dt>Status</dt><dd>Loading</dd></div>
+            <div><dt>Venue</dt><dd>504 Esplanade</dd></div>
+            <div><dt>City</dt><dd>New Orleans</dd></div>
+          </dl>
+          <a class="btn green wide" href="https://floydclaptonblues.github.io/UpcomingShows/" target="_blank" rel="noopener">See Upcoming Shows ↓</a>
+        </aside>
+
+        <section class="jazzycat-band" id="jazzycat" aria-label="JazzyCat marching quartet">
+          <div class="jazzycat-copy">
+            <span class="paw">🐾</span>
+            <strong>Meet JazzyCat</strong>
+            <small>Our house band never takes a night off.</small>
+          </div>
+          <div class="cat-march" aria-hidden="true">
+            <img src="bmc_homepage_build/assets/jazzycat-1.png" alt="" class="cat cat-one" />
+            <img src="bmc_homepage_build/assets/jazzycat-2.png" alt="" class="cat cat-two" />
+            <img src="bmc_homepage_build/assets/jazzycat-3.png" alt="" class="cat cat-three" />
+            <img src="bmc_homepage_build/assets/jazzycat-4.png" alt="" class="cat cat-four" />
+          </div>
+        </section>
       </section>
-    </section>
-  </main>
+    </main>
+  </div>
 
-  <script src="bmc_homepage_build/script.js"></script>
-  <script src="bmc_homepage_build/home-schedule.js?v=20260614-public-copy"></script>
+  <script src="bmc_homepage_build/home-schedule.js?v=20260614-mobile-clean"></script>
 </body>
 </html>
