@@ -4,35 +4,76 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Balcony Music Club | New Orleans Live Music</title>
-  <meta name="description" content="Balcony Music Club homepage concept with the live UpcomingShows schedule, BMC Radio, event hosting, gallery, and JazzyCat." />
+  <meta name="description" content="Balcony Music Club official homepage for live music, events, BMC Radio, gallery, and JazzyCat." />
   <link rel="stylesheet" href="bmc_homepage_build/styles.css" />
   <style>
-    .schedule-source-note {
-      margin: 14px 0 10px;
-      color: rgba(255, 243, 207, .86);
-      line-height: 1.55;
+    :root {
+      --win95: "MS Sans Serif", "Microsoft Sans Serif", Arial, sans-serif;
+      --win98: Tahoma, Verdana, Arial, sans-serif;
+      --winxp: "Trebuchet MS", Verdana, Tahoma, sans-serif;
     }
 
-    .schedule-source-meta {
-      margin: 0;
-      color: rgba(255, 243, 207, .62);
-      font-size: 12px;
-      line-height: 1.45;
+    html,
+    body {
+      min-height: 100%;
+      overflow-x: hidden;
     }
 
-    .live-schedule-panel {
-      grid-column: 1 / -1;
+    body {
+      font-family: var(--win98);
     }
 
-    .live-schedule-panel .section-head {
-      align-items: flex-start;
+    .site-header {
+      font-family: var(--win95);
     }
 
-    .schedule-source-note a,
-    .schedule-source-meta a,
-    .section-head a {
+    .main-nav,
+    .btn,
+    .live-card,
+    .set-times {
+      font-family: var(--win98);
+    }
+
+    .hero-copy .eyebrow,
+    .jazzycat-copy strong {
+      font-family: var(--win95);
+    }
+
+    .hero h1 {
+      font-family: var(--winxp);
+      letter-spacing: -.08em;
+    }
+
+    .hero {
+      min-height: calc(100vh - 138px);
+      padding-top: clamp(36px, 5vh, 70px);
+      padding-bottom: clamp(130px, 14vh, 180px);
+    }
+
+    .official-copy {
+      max-width: 790px;
+      margin: 28px 0 0;
+      color: var(--cream);
+      font-family: var(--win98);
+      font-size: clamp(20px, 1.9vw, 30px);
+      line-height: 1.36;
+      text-shadow: 0 2px 0 rgba(0,0,0,.5), 0 0 22px rgba(255, 210, 91, .18);
+    }
+
+    .official-copy .copyright-line {
       color: var(--gold);
+      font-family: var(--win95);
       font-weight: 900;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .live-card .genre {
+      font-family: var(--win98);
+      color: #78ff9e;
+      font-size: 18px;
+      line-height: 1.35;
     }
 
     .live-card .set-times div.is-headliner dd,
@@ -40,97 +81,25 @@
       color: var(--gold);
     }
 
-    .schedule-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
+    .live-card .artist {
+      font-family: var(--winxp);
     }
 
-    .schedule-day-card {
-      position: relative;
-      min-height: 190px;
-      padding: 16px;
-      border: 1px solid rgba(255, 210, 91, .43);
-      background:
-        linear-gradient(180deg, rgba(24, 7, 45, .88), rgba(6, 2, 17, .88)),
-        radial-gradient(circle at top right, rgba(226, 58, 191, .24), transparent 48%);
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04), 0 14px 40px rgba(0, 0, 0, .28);
-      overflow: hidden;
+    .site-footer,
+    .dashboard {
+      display: none !important;
     }
 
-    .schedule-day-card::before {
-      content: "";
-      position: absolute;
-      inset: 5px;
-      border: 1px solid rgba(226, 58, 191, .33);
-      pointer-events: none;
-    }
-
-    .schedule-day-card h3 {
-      position: relative;
-      margin: 0 0 14px;
-      color: var(--gold);
-      font-size: 17px;
-      line-height: 1.2;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-    }
-
-    .schedule-day-events {
-      position: relative;
-      display: grid;
-      gap: 10px;
-    }
-
-    .schedule-event {
-      padding: 10px 10px 11px;
-      border: 1px solid rgba(255, 255, 255, .12);
-      background: rgba(4, 1, 14, .46);
-    }
-
-    .schedule-event time {
-      display: block;
-      color: rgba(255, 243, 207, .78);
-      font-size: 12px;
-      line-height: 1.25;
-      margin-bottom: 5px;
-    }
-
-    .schedule-event strong {
-      display: block;
-      color: #fff;
-      font-size: 14px;
-      line-height: 1.2;
-      text-transform: uppercase;
-    }
-
-    .schedule-event.is-headliner {
-      border-color: rgba(255, 210, 91, .58);
-      box-shadow: inset 0 0 24px rgba(255, 178, 31, .08), 0 0 18px rgba(255, 178, 31, .08);
-    }
-
-    .schedule-event.is-headliner strong {
-      color: var(--gold);
-    }
-
-    .schedule-empty {
-      grid-column: 1 / -1;
-      margin: 0;
-      padding: 26px;
-      border: 1px solid rgba(255, 210, 91, .42);
-      background: rgba(5, 2, 16, .66);
-      color: rgba(255, 243, 207, .86);
-    }
-
-    @media (max-width: 1180px) {
-      .schedule-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    @media (max-width: 1120px) {
+      .hero {
+        min-height: auto;
+        padding-bottom: 250px;
       }
     }
 
     @media (max-width: 760px) {
-      .schedule-grid {
-        grid-template-columns: 1fr;
+      .official-copy .copyright-line {
+        white-space: normal;
       }
     }
   </style>
@@ -149,16 +118,16 @@
     <nav class="main-nav" aria-label="Primary navigation">
       <a href="#home" class="active">Home</a>
       <a href="#live-tonight">Live Tonight</a>
-      <a href="#shows">Shows</a>
+      <a href="https://floydclaptonblues.github.io/UpcomingShows/">Shows</a>
       <a href="https://floydclaptonblues.github.io/UpcomingShows/">Full Schedule</a>
-      <a href="#events">Host Your Event</a>
-      <a href="#store">Store</a>
-      <a href="#jazzycat">Ask JazzyCat</a>
+      <a href="https://www.balconymusicclub.com/host-your-event">Host Your Event</a>
+      <a href="https://www.balconymusicclub.com/store">Store</a>
+      <a href="https://www.balconymusicclub.com/ask-jazzycat">Ask JazzyCat</a>
     </nav>
 
     <div class="header-actions">
       <button aria-label="Search">⌕</button>
-      <button aria-label="Cart">♬</button>
+      <button aria-label="Music">♫</button>
     </div>
   </header>
 
@@ -167,8 +136,7 @@
       <div class="hero-copy">
         <p class="eyebrow">Welcome to</p>
         <h1>Balcony<br />Music Club</h1>
-        <p class="tagline">Where New Orleans comes to life.</p>
-        <p class="lede">Live music, cold drinks, good people, and an Esplanade Avenue night that feels like it was painted in neon.</p>
+        <p class="tagline official-copy">Welcome to the official website of Balcony Music Club. Located in the heart of the French Quarter - <span class="copyright-line">(c) THE CENTER OF THE UNIVERSE BMC 2026</span> - Browse and enjoy.</p>
         <div class="hero-buttons">
           <a class="btn gold" href="#live-tonight">Live Tonight ♪</a>
           <a class="btn purple" href="https://floydclaptonblues.github.io/UpcomingShows/">View Full Schedule ▣</a>
@@ -183,14 +151,14 @@
         </div>
         <div class="stage-photo"></div>
         <p class="artist" data-live-title>Loading Schedule…</p>
-        <p class="genre" data-live-subtitle>Reading the real BMC calendar from the UpcomingShows GitHub repository.</p>
+        <p class="genre" data-live-subtitle>Tonight’s lineup and upcoming dates refresh automatically. Times and artists subject to change.</p>
         <dl class="set-times" data-live-events>
-          <div><dt>Source</dt><dd>UpcomingShows Repo</dd></div>
+          <div><dt>Schedule</dt><dd>Updating</dd></div>
           <div><dt>Status</dt><dd>Loading</dd></div>
           <div><dt>Venue</dt><dd>504 Esplanade</dd></div>
           <div><dt>City</dt><dd>New Orleans</dd></div>
         </dl>
-        <a class="btn green wide" href="#shows">See Upcoming Shows ↓</a>
+        <a class="btn green wide" href="https://floydclaptonblues.github.io/UpcomingShows/">See Upcoming Shows ↓</a>
       </aside>
 
       <section class="jazzycat-band" id="jazzycat" aria-label="JazzyCat marching quartet">
@@ -207,116 +175,9 @@
         </div>
       </section>
     </section>
-
-    <section class="dashboard shell" aria-label="Homepage feature sections">
-      <section class="panel live-schedule-panel" id="shows" aria-labelledby="live-schedule-heading">
-        <div class="section-head">
-          <div>
-            <h2 id="live-schedule-heading">✣ Upcoming Shows ✣</h2>
-            <p class="schedule-source-note" data-schedule-summary>Loading the live BMC schedule from <a href="https://github.com/floydclaptonblues/UpcomingShows">floydclaptonblues/UpcomingShows</a>.</p>
-            <p class="schedule-source-meta" data-schedule-source>Source: UpcomingShows GitHub repository</p>
-          </div>
-          <a href="https://floydclaptonblues.github.io/UpcomingShows/">Open Full Schedule</a>
-        </div>
-        <div class="schedule-grid" data-schedule-grid>
-          <p class="schedule-empty">Loading upcoming shows…</p>
-        </div>
-      </section>
-
-      <section class="panel radio">
-        <div class="section-head">
-          <h2>✣ BMC Radio</h2>
-          <a href="#">Listen Live</a>
-        </div>
-        <div class="radio-player">
-          <img src="bmc_homepage_build/assets/bmc-bg-tile.webp" alt="" />
-          <div>
-            <strong>Parade On Esplanade</strong>
-            <p>Balcony Music Club Signal</p>
-            <div class="wave" aria-hidden="true"></div>
-          </div>
-          <button aria-label="Play BMC Radio">▶</button>
-        </div>
-      </section>
-
-      <section class="panel events" id="events">
-        <div>
-          <h2>Host Your Event</h2>
-          <p>From private parties to corporate gatherings, BMC turns the night into a real New Orleans memory.</p>
-          <ul>
-            <li>Private Events</li>
-            <li>Weddings</li>
-            <li>Corporate Functions</li>
-            <li>Custom Experiences</li>
-          </ul>
-          <a class="btn purple small" href="https://www.balconymusicclub.com/host-your-event">Learn More</a>
-        </div>
-        <img src="bmc_homepage_build/assets/gallery-2-thumb.jpg" alt="BMC speakeasy bar interior" />
-      </section>
-
-      <section class="panel gallery" aria-labelledby="gallery-heading">
-        <div class="section-head">
-          <h2 id="gallery-heading">✣ Gallery</h2>
-          <a href="#">View Gallery</a>
-        </div>
-        <div class="gallery-grid">
-          <button data-full="bmc_homepage_build/assets/gallery-1.jpg" aria-label="Open Courtyard Mural photo">
-            <img src="bmc_homepage_build/assets/gallery-1-thumb.jpg" alt="BMC courtyard mural with string lights" />
-            <span>Courtyard</span>
-          </button>
-          <button data-full="bmc_homepage_build/assets/gallery-2.jpg" aria-label="Open Speakeasy Bar photo">
-            <img src="bmc_homepage_build/assets/gallery-2-thumb.jpg" alt="BMC speakeasy bar interior" />
-            <span>Bar</span>
-          </button>
-          <button data-full="bmc_homepage_build/assets/gallery-3.jpg" aria-label="Open Main Stage Wide photo">
-            <img src="bmc_homepage_build/assets/gallery-3-thumb.jpg" alt="BMC stage with red curtains and drum kit" />
-            <span>Stage</span>
-          </button>
-          <button data-full="bmc_homepage_build/assets/gallery-4.jpg" aria-label="Open BMC Stage Mural photo">
-            <img src="bmc_homepage_build/assets/gallery-4-thumb.jpg" alt="Close view of BMC mural behind stage" />
-            <span>Mural</span>
-          </button>
-        </div>
-      </section>
-
-      <section class="panel signup">
-        <h2>Stay in the Loop</h2>
-        <p>Sign up for show updates, special events, and exclusive offers.</p>
-        <form>
-          <label class="sr-only" for="email">Email address</label>
-          <input id="email" type="email" placeholder="Email Address" />
-          <button type="submit">Sign Me Up</button>
-        </form>
-      </section>
-
-      <section class="panel find-us">
-        <h2>Find Us</h2>
-        <p>504 Esplanade Avenue<br />New Orleans, Louisiana</p>
-        <a href="https://www.google.com/maps/search/?api=1&query=504%20Esplanade%20Avenue%20New%20Orleans%20Louisiana">Get Directions ⬢</a>
-        <div class="socials" aria-label="Social links">
-          <a href="https://www.facebook.com/profile.php?id=61574360105013" aria-label="Facebook">f</a>
-          <a href="https://www.instagram.com/thebalconymusicclub" aria-label="Instagram">◎</a>
-          <a href="#" aria-label="X">𝕏</a>
-          <a href="#" aria-label="YouTube">▶</a>
-        </div>
-      </section>
-    </section>
   </main>
 
-  <footer class="site-footer">
-    <span>Live Music</span>
-    <span>Cold Drinks</span>
-    <span>Hot Nights</span>
-    <span>Good People</span>
-    <strong>Right on the River. Right in New Orleans.</strong>
-  </footer>
-
-  <div class="lightbox" hidden>
-    <button class="lightbox-close" aria-label="Close image">×</button>
-    <img src="" alt="" />
-  </div>
-
   <script src="bmc_homepage_build/script.js"></script>
-  <script src="bmc_homepage_build/home-schedule.js?v=20260614-upcoming-repo"></script>
+  <script src="bmc_homepage_build/home-schedule.js?v=20260614-public-copy"></script>
 </body>
 </html>
