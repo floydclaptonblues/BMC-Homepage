@@ -3,475 +3,193 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Balcony Music Club Embed</title>
-  <meta name="description" content="Balcony Music Club wide responsive embed for live music and upcoming shows." />
+  <title>Balcony Music Club | New Orleans Live Music</title>
+  <meta name="description" content="Balcony Music Club official homepage for live music, events, BMC Radio, gallery, and JazzyCat." />
+  <link rel="stylesheet" href="bmc_homepage_build/styles.css" />
   <style>
     :root {
-      --ink: #10071e;
-      --panel: rgba(18, 7, 38, .9);
-      --panel-strong: rgba(7, 2, 19, .96);
-      --gold: #ffd25b;
-      --hot-gold: #ffb21f;
-      --magenta: #e23abf;
-      --violet: #6d38e8;
-      --green: #18c765;
-      --teal: #5df2d6;
-      --cream: #fff3cf;
-      --line: rgba(255, 210, 91, .55);
       --win95: "MS Sans Serif", "Microsoft Sans Serif", Arial, sans-serif;
       --win98: Tahoma, Verdana, Arial, sans-serif;
       --winxp: "Trebuchet MS", Verdana, Tahoma, sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
     html,
     body {
-      margin: 0;
       min-height: 100%;
-      background: transparent;
-      color: var(--cream);
-      font-family: var(--win98);
       overflow-x: hidden;
     }
 
     body {
-      padding: clamp(8px, 1.2vw, 16px);
+      font-family: var(--win98);
     }
 
-    .bmc-embed {
-      position: relative;
-      isolation: isolate;
-      width: min(100%, 1600px);
-      min-height: clamp(390px, 42vw, 610px);
-      margin: 0 auto;
-      overflow: hidden;
-      border: 1px solid rgba(255, 210, 91, .42);
-      background:
-        linear-gradient(90deg, rgba(7, 2, 19, .96) 0%, rgba(10, 2, 29, .8) 48%, rgba(7, 2, 19, .64) 100%),
-        linear-gradient(180deg, rgba(7, 2, 19, .2), rgba(7, 2, 19, .82)),
-        url("bmc_homepage_build/assets/bmc-bg-tile.gif") center center / cover repeat;
-      box-shadow: 0 18px 58px rgba(0, 0, 0, .48), inset 0 0 0 1px rgba(255, 255, 255, .05);
+    .site-header {
+      font-family: var(--win95);
     }
 
-    .bmc-embed::before {
-      content: "";
-      position: absolute;
-      inset: 8px;
-      border: 1px solid rgba(226, 58, 191, .38);
-      pointer-events: none;
-      z-index: 2;
+    .main-nav,
+    .btn,
+    .live-card,
+    .set-times {
+      font-family: var(--win98);
     }
 
-    .bmc-embed::after {
-      content: "";
-      pointer-events: none;
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      opacity: .14;
-      background-image:
-        repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,.09) 3px 4px),
-        repeating-linear-gradient(90deg, transparent 0 5px, rgba(255,255,255,.04) 5px 6px);
-      mix-blend-mode: screen;
+    .hero-copy .eyebrow,
+    .jazzycat-copy strong {
+      font-family: var(--win95);
     }
 
-    .embed-grid {
-      position: relative;
-      z-index: 3;
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(340px, .72fr);
-      gap: clamp(18px, 3vw, 46px);
-      align-items: stretch;
-      min-height: inherit;
-      padding: clamp(18px, 3vw, 48px);
-    }
-
-    .brand-block {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-width: 0;
-    }
-
-    .logo-window {
-      width: min(360px, 72vw);
-      padding: 8px;
-      border: 1px solid rgba(255, 210, 91, .42);
-      background: rgba(5, 2, 16, .58);
-      box-shadow: 0 0 28px rgba(226, 58, 191, .15);
-    }
-
-    .logo-window img {
-      width: 100%;
-      display: block;
-      image-rendering: pixelated;
-    }
-
-    .welcome {
-      margin: clamp(18px, 2.2vw, 32px) 0 0;
-      max-width: 880px;
+    .hero h1 {
       font-family: var(--winxp);
-      font-size: clamp(25px, 3.2vw, 56px);
-      line-height: .98;
-      letter-spacing: -.055em;
-      text-transform: uppercase;
-      background: linear-gradient(#ff75bd 0%, #ffc45a 38%, #54ed85 66%, #39d7ff 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      filter: drop-shadow(5px 7px 0 rgba(36, 19, 92, .95)) drop-shadow(0 0 18px rgba(255, 89, 196, .18));
+      letter-spacing: -.08em;
+    }
+
+    .hero {
+      min-height: calc(100vh - 138px);
+      padding-top: clamp(36px, 5vh, 70px);
+      padding-bottom: clamp(130px, 14vh, 180px);
     }
 
     .official-copy {
-      max-width: 780px;
-      margin: clamp(16px, 2vw, 24px) 0 0;
+      max-width: 790px;
+      margin: 28px 0 0;
       color: var(--cream);
       font-family: var(--win98);
-      font-size: clamp(16px, 1.55vw, 24px);
-      line-height: 1.4;
+      font-size: clamp(20px, 1.9vw, 30px);
       font-style: normal;
-      text-shadow: 0 2px 0 rgba(0, 0, 0, .54), 0 0 20px rgba(255, 210, 91, .16);
+      line-height: 1.36;
+      text-shadow: 0 2px 0 rgba(0,0,0,.5), 0 0 22px rgba(255, 210, 91, .18);
     }
 
-    .copyright-line {
+    .official-copy .copyright-line {
       color: var(--gold);
       font-family: var(--win95);
+      font-style: normal;
       font-weight: 900;
-      letter-spacing: .04em;
+      letter-spacing: .06em;
       text-transform: uppercase;
-      font-style: normal;
+      white-space: nowrap;
     }
 
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: clamp(18px, 2.2vw, 30px);
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 0 20px;
-      border: 1px solid rgba(255, 255, 255, .18);
-      color: #16071d;
+    .live-card .genre {
       font-family: var(--win98);
-      font-size: 14px;
-      font-weight: 950;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-      text-decoration: none;
+      color: #78ff9e;
+      font-size: 18px;
       font-style: normal;
-      box-shadow: 0 7px 0 rgba(0,0,0,.38), 0 0 24px rgba(255, 178, 31, .2);
-    }
-
-    .btn.gold {
-      background: linear-gradient(180deg, #ffe36d, #ffaf19);
-    }
-
-    .btn.purple {
-      color: #fff;
-      background: linear-gradient(180deg, #cc4de9, #651bbb);
-    }
-
-    .live-card {
-      align-self: center;
-      position: relative;
-      padding: clamp(16px, 2.3vw, 30px);
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(43, 13, 65, .88), rgba(7, 2, 19, .95));
-      box-shadow: 0 18px 54px rgba(0, 0, 0, .44), inset 0 0 0 1px rgba(255,255,255,.05);
-      min-height: 310px;
-      font-style: normal;
-    }
-
-    .live-card::before {
-      content: "";
-      position: absolute;
-      inset: 6px;
-      border: 1px solid rgba(226, 58, 191, .4);
-      pointer-events: none;
-    }
-
-    .live-card h2 {
-      margin: 0 0 16px;
-      color: var(--gold);
-      font-family: var(--win95);
-      font-size: clamp(20px, 2.1vw, 34px);
-      text-align: center;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      font-style: normal;
-    }
-
-    .stage-photo {
-      height: clamp(86px, 10vw, 132px);
-      border: 1px solid rgba(226,58,191,.7);
-      background-image:
-        linear-gradient(90deg, rgba(18,7,38,.12), rgba(18,7,38,.36)),
-        url("bmc_homepage_build/assets/gallery-3-thumb.jpg");
-      background-size: cover;
-      background-position: center;
-      box-shadow: inset 0 0 30px rgba(0,0,0,.4), 0 0 22px rgba(226,58,191,.2);
-    }
-
-    .live-title {
-      margin: 16px 0 6px;
-      color: var(--gold);
-      font-family: var(--win98);
-      font-size: clamp(22px, 2vw, 34px);
-      line-height: 1.05;
-      font-weight: 950;
-      text-transform: uppercase;
-      font-style: normal;
-    }
-
-    .live-note {
-      margin: 0 0 14px;
-      color: #7dff9d;
-      font-family: var(--win98);
-      font-size: 15px;
       line-height: 1.35;
-      font-style: normal;
-      font-weight: 700;
     }
 
-    .lineup {
-      margin: 0;
-      display: grid;
-      gap: 0;
-    }
-
-    .lineup div {
-      display: grid;
-      grid-template-columns: minmax(115px, auto) 1fr;
-      gap: 14px;
-      padding: 10px 0;
-      border-bottom: 1px dotted rgba(255, 210, 91, .32);
-      align-items: baseline;
-    }
-
-    .lineup dt,
-    .lineup dd {
-      margin: 0;
-      font-family: var(--win98);
-      font-style: normal;
-    }
-
-    .lineup dt {
-      color: var(--cream);
-      font-weight: 950;
-      font-size: 13px;
-    }
-
-    .lineup dd {
-      color: #fff;
-      font-weight: 900;
-      text-align: right;
-      text-transform: uppercase;
-      font-size: 13px;
-    }
-
-    .lineup .is-headliner dt,
-    .lineup .is-headliner dd {
+    .live-card .set-times div.is-headliner dd,
+    .live-card .set-times div.is-headliner dt {
       color: var(--gold);
     }
 
-    @media (max-width: 900px) {
-      body {
-        padding: 0;
-      }
+    .live-card .artist {
+      font-family: var(--winxp);
+      font-style: normal;
+    }
 
-      .bmc-embed {
+    .tagline,
+    .lede,
+    .genre,
+    .artist,
+    .set-times,
+    .btn,
+    .main-nav a {
+      font-style: normal !important;
+    }
+
+    .site-footer,
+    .dashboard {
+      display: none !important;
+    }
+
+    @media (max-width: 1120px) {
+      .hero {
         min-height: auto;
-        border-left: 0;
-        border-right: 0;
-      }
-
-      .embed-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 18px;
-      }
-
-      .logo-window {
-        width: min(320px, 88vw);
-      }
-
-      .welcome {
-        font-size: clamp(36px, 13vw, 68px);
-      }
-
-      .official-copy {
-        font-size: 17px;
-      }
-
-      .live-card {
-        min-height: 0;
+        padding-bottom: 250px;
       }
     }
 
-    @media (max-width: 520px) {
-      .actions {
-        display: grid;
-        grid-template-columns: 1fr;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .lineup div {
-        grid-template-columns: 1fr;
-        gap: 3px;
-      }
-
-      .lineup dd {
-        text-align: left;
+    @media (max-width: 760px) {
+      .official-copy .copyright-line {
+        white-space: normal;
       }
     }
   </style>
 </head>
 <body>
-  <section class="bmc-embed" aria-label="Balcony Music Club live music embed">
-    <div class="embed-grid">
-      <div class="brand-block">
-        <div class="logo-window">
-          <img src="bmc_homepage_build/assets/bmc-logo-pixel.png" alt="Balcony Music Club New Orleans" />
-        </div>
-        <h1 class="welcome">Balcony Music Club</h1>
-        <p class="official-copy">Welcome to the official website of Balcony Music Club. Located in the heart of the French Quarter - <span class="copyright-line">© THE CENTER OF THE UNIVERSE BMC 2026</span> - Browse and enjoy.</p>
-        <div class="actions">
-          <a class="btn gold" href="https://floydclaptonblues.github.io/BMC-Homepage/" target="_blank" rel="noopener">Enter Website ♪</a>
-          <a class="btn purple" href="https://floydclaptonblues.github.io/UpcomingShows/" target="_blank" rel="noopener">Upcoming Shows ▣</a>
+  <div class="page-bg" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="https://floydclaptonblues.github.io/BMC-Homepage/" target="_blank" rel="noopener" aria-label="Balcony Music Club home">
+      <img src="bmc_homepage_build/assets/bmc-logo-pixel.png" alt="Balcony Music Club" />
+    </a>
+
+    <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+
+    <nav class="main-nav" aria-label="Primary navigation">
+      <a href="https://floydclaptonblues.github.io/BMC-Homepage/" target="_blank" rel="noopener" class="active">Home</a>
+      <a href="https://floydclaptonblues.github.io/UpcomingShows/" target="_blank" rel="noopener">Shows</a>
+      <a href="https://www.balconymusicclub.com/host-your-event" target="_blank" rel="noopener">Host Your Event</a>
+      <a href="https://www.balconymusicclub.com/store" target="_blank" rel="noopener">Store</a>
+      <a href="https://www.balconymusicclub.com/ask-jazzycat" target="_blank" rel="noopener">Ask JazzyCat</a>
+    </nav>
+
+    <div class="header-actions">
+      <button aria-label="Search">⌕</button>
+      <button aria-label="Music">♫</button>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero shell">
+      <div class="hero-copy">
+        <p class="eyebrow">Welcome to</p>
+        <h1>Balcony<br />Music Club</h1>
+        <p class="tagline official-copy">Welcome to the official website of Balcony Music Club. Located in the heart of the French Quarter - <span class="copyright-line">© THE CENTER OF THE UNIVERSE BMC 2026</span> - Browse and enjoy.</p>
+        <div class="hero-buttons">
+          <a class="btn gold" href="#live-tonight">Live Tonight ♪</a>
+          <a class="btn purple" href="https://floydclaptonblues.github.io/UpcomingShows/" target="_blank" rel="noopener">View Full Schedule ▣</a>
         </div>
       </div>
 
-      <aside class="live-card" aria-labelledby="live-heading">
-        <h2 id="live-heading">✦ Live Tonight ✦</h2>
-        <div class="stage-photo" aria-hidden="true"></div>
-        <p class="live-title" data-live-title>Loading Schedule…</p>
-        <p class="live-note" data-live-subtitle>Tonight’s lineup and upcoming dates refresh automatically. Times and artists subject to change.</p>
-        <dl class="lineup" data-live-events>
+      <aside class="live-card" id="live-tonight" aria-labelledby="live-heading">
+        <div class="panel-title">
+          <span>✦</span>
+          <h2 id="live-heading">Live Tonight</h2>
+          <span>✦</span>
+        </div>
+        <div class="stage-photo"></div>
+        <p class="artist" data-live-title>Loading Schedule…</p>
+        <p class="genre" data-live-subtitle>Tonight’s lineup and upcoming dates refresh automatically. Times and artists subject to change.</p>
+        <dl class="set-times" data-live-events>
           <div><dt>Schedule</dt><dd>Updating</dd></div>
+          <div><dt>Status</dt><dd>Loading</dd></div>
           <div><dt>Venue</dt><dd>504 Esplanade</dd></div>
           <div><dt>City</dt><dd>New Orleans</dd></div>
         </dl>
+        <a class="btn green wide" href="https://floydclaptonblues.github.io/UpcomingShows/" target="_blank" rel="noopener">See Upcoming Shows ↓</a>
       </aside>
-    </div>
-  </section>
 
-  <script>
-    const UPCOMING_SHOWS_SOURCES = [
-      "https://floydclaptonblues.github.io/UpcomingShows/shows.json",
-      "https://raw.githubusercontent.com/floydclaptonblues/UpcomingShows/main/shows.json"
-    ];
-
-    const MONTH_INDEX = {
-      JANUARY: 0, FEBRUARY: 1, MARCH: 2, APRIL: 3, MAY: 4, JUNE: 5,
-      JULY: 6, AUGUST: 7, SEPTEMBER: 8, OCTOBER: 9, NOVEMBER: 10, DECEMBER: 11
-    };
-
-    const liveTitle = document.querySelector("[data-live-title]");
-    const liveSubtitle = document.querySelector("[data-live-subtitle]");
-    const liveEvents = document.querySelector("[data-live-events]");
-
-    function escapeHtml(value) {
-      return String(value || "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-    }
-
-    function dateKey(year, monthIndex, day) {
-      return (year * 10000) + ((monthIndex + 1) * 100) + day;
-    }
-
-    function scheduleYear(data) {
-      const yearMatch = String(data.month || data.subtitle || "").match(/\b(20\d{2})\b/);
-      if (yearMatch) return Number(yearMatch[1]);
-      return Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Chicago", year: "numeric" }).format(new Date()));
-    }
-
-    function todayKeyForVenue() {
-      const parts = new Intl.DateTimeFormat("en-US", {
-        timeZone: "America/Chicago",
-        year: "numeric",
-        month: "numeric",
-        day: "numeric"
-      }).formatToParts(new Date());
-      const values = Object.fromEntries(parts.map((part) => [part.type, Number(part.value)]));
-      return dateKey(values.year, values.month - 1, values.day);
-    }
-
-    function showDayKey(day, data) {
-      const match = String(day.date || "").match(/\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})\b/i);
-      if (!match) return null;
-      const monthIndex = MONTH_INDEX[match[1].toUpperCase()];
-      const dayNumber = Number(match[2]);
-      if (!Number.isFinite(monthIndex) || !Number.isFinite(dayNumber)) return null;
-      return dateKey(scheduleYear(data), monthIndex, dayNumber);
-    }
-
-    async function fetchScheduleData() {
-      let lastError = null;
-      for (const source of UPCOMING_SHOWS_SOURCES) {
-        try {
-          const response = await fetch(`${source}?v=${Date.now()}`, { cache: "no-store" });
-          if (!response.ok) throw new Error(`Schedule unavailable: ${response.status}`);
-          return await response.json();
-        } catch (error) {
-          lastError = error;
-        }
-      }
-      throw lastError || new Error("Schedule unavailable");
-    }
-
-    function renderEmpty(message) {
-      liveTitle.textContent = "Schedule Updating";
-      liveSubtitle.textContent = message || "Upcoming shows will be posted soon.";
-      liveEvents.innerHTML = `
-        <div><dt>Schedule</dt><dd>Updating Soon</dd></div>
-        <div><dt>Venue</dt><dd>504 Esplanade</dd></div>
-        <div><dt>City</dt><dd>New Orleans</dd></div>
-      `;
-    }
-
-    function renderLiveCard(data) {
-      const todayKey = todayKeyForVenue();
-      const days = (data.shows || []).filter((day) => {
-        const key = showDayKey(day, data);
-        return key === null || key >= todayKey;
-      });
-      const today = days.find((day) => showDayKey(day, data) === todayKey);
-      const focus = today || days[0];
-
-      if (!focus) {
-        renderEmpty("Upcoming shows will be posted soon.");
-        return;
-      }
-
-      const shows = focus.shows || [];
-      liveTitle.textContent = `${today ? "Tonight" : "Next Up"}: ${focus.date}`;
-      liveSubtitle.textContent = `${shows.length} performance${shows.length === 1 ? "" : "s"} scheduled. Times and artists subject to change.`;
-      liveEvents.innerHTML = shows.map((show) => `
-        <div class="${show.headliner ? "is-headliner" : ""}">
-          <dt>${escapeHtml(show.time)}</dt>
-          <dd>${escapeHtml(show.artist)}</dd>
+      <section class="jazzycat-band" id="jazzycat" aria-label="JazzyCat marching quartet">
+        <div class="jazzycat-copy">
+          <span class="paw">🐾</span>
+          <strong>Meet JazzyCat</strong>
+          <small>Our house band never takes a night off.</small>
         </div>
-      `).join("");
-    }
+        <div class="cat-march" aria-hidden="true">
+          <img src="bmc_homepage_build/assets/jazzycat-1.png" alt="" class="cat cat-one" />
+          <img src="bmc_homepage_build/assets/jazzycat-2.png" alt="" class="cat cat-two" />
+          <img src="bmc_homepage_build/assets/jazzycat-3.png" alt="" class="cat cat-three" />
+          <img src="bmc_homepage_build/assets/jazzycat-4.png" alt="" class="cat cat-four" />
+        </div>
+      </section>
+    </section>
+  </main>
 
-    fetchScheduleData()
-      .then(renderLiveCard)
-      .catch(() => renderEmpty("The live schedule is temporarily unavailable. Please check the full schedule for the latest listing."));
-  </script>
+  <script src="bmc_homepage_build/script.js"></script>
+  <script src="bmc_homepage_build/home-schedule.js?v=20260614-public-copy"></script>
 </body>
 </html>
