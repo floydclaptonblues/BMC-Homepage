@@ -4,8 +4,68 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Balcony Music Club | New Orleans Live Music</title>
-  <meta name="description" content="Balcony Music Club homepage concept with Live Tonight, featured BMC events, BMC Radio, event hosting, gallery, and JazzyCat." />
+  <meta name="description" content="Balcony Music Club homepage concept with the official live events calendar, BMC Radio, event hosting, gallery, and JazzyCat." />
   <link rel="stylesheet" href="bmc_homepage_build/styles.css" />
+  <style>
+    .calendar-source-note {
+      margin: 14px 0 20px;
+      color: rgba(255, 243, 207, .86);
+      line-height: 1.55;
+    }
+
+    .official-calendar {
+      grid-column: 1 / -1;
+    }
+
+    .official-calendar .section-head {
+      align-items: flex-start;
+    }
+
+    .calendar-frame-wrap {
+      position: relative;
+      height: min(760px, 78vh);
+      min-height: 520px;
+      border: 1px solid rgba(255, 210, 91, .42);
+      background: rgba(5, 2, 16, .66);
+      box-shadow: inset 0 0 48px rgba(0,0,0,.42), 0 0 28px rgba(226,58,191,.16);
+      overflow: hidden;
+    }
+
+    .live-calendar-frame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #0b0419;
+    }
+
+    .calendar-fallback {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 1;
+      padding: 12px 14px;
+      border: 1px solid rgba(255, 210, 91, .35);
+      background: rgba(9, 2, 22, .9);
+      color: var(--cream);
+      font-size: 13px;
+    }
+
+    .calendar-fallback a,
+    .calendar-source-note a {
+      color: var(--gold);
+      font-weight: 900;
+    }
+
+    @media (max-width: 760px) {
+      .calendar-frame-wrap {
+        height: 650px;
+        min-height: 650px;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="page-bg" aria-hidden="true"></div>
@@ -20,7 +80,7 @@
 
     <nav class="main-nav" aria-label="Primary navigation">
       <a href="#home" class="active">Home</a>
-      <a href="#live-tonight">Live Tonight</a>
+      <a href="#live-tonight">Live Calendar</a>
       <a href="#shows">Shows</a>
       <a href="https://www.balconymusicclub.com/events-tickets">Events &amp; Tickets</a>
       <a href="#events">Host Your Event</a>
@@ -42,27 +102,27 @@
         <p class="tagline">Where New Orleans comes to life.</p>
         <p class="lede">Live music, cold drinks, good people, and an Esplanade Avenue night that feels like it was painted in neon.</p>
         <div class="hero-buttons">
-          <a class="btn gold" href="#live-tonight">Live Tonight ♪</a>
-          <a class="btn purple" href="https://www.balconymusicclub.com/events-tickets">View Calendar ▣</a>
+          <a class="btn gold" href="#live-tonight">Live Calendar ♪</a>
+          <a class="btn purple" href="https://www.balconymusicclub.com/events-tickets">View Events &amp; Tickets ▣</a>
         </div>
       </div>
 
       <aside class="live-card" id="live-tonight" aria-labelledby="live-heading">
         <div class="panel-title">
           <span>✦</span>
-          <h2 id="live-heading">Live Tonight</h2>
+          <h2 id="live-heading">Live Calendar</h2>
           <span>✦</span>
         </div>
         <div class="stage-photo"></div>
-        <p class="artist">Willie P's Blues Extravaganza</p>
-        <p class="genre">Blues night featuring musicians from War &amp; The Fabulous Thunderbirds</p>
+        <p class="artist">Official BMC Events</p>
+        <p class="genre">Pulled from Balcony Music Club’s live Shows / Events &amp; Tickets calendar. No placeholder bands.</p>
         <dl class="set-times">
-          <div><dt>Showtime</dt><dd>9:00 PM</dd></div>
-          <div><dt>Happy Hour</dt><dd>4:30–5:30 PM</dd></div>
-          <div><dt>Brunch Sundays</dt><dd>Noon–4:00 PM</dd></div>
-          <div><dt>Cover</dt><dd>No Cover</dd></div>
+          <div><dt>Source</dt><dd>Official BMC Calendar</dd></div>
+          <div><dt>Updates</dt><dd>When BMC Updates Events</dd></div>
+          <div><dt>Venue</dt><dd>504 Esplanade</dd></div>
+          <div><dt>City</dt><dd>New Orleans</dd></div>
         </dl>
-        <a class="btn green wide" href="https://www.balconymusicclub.com/events-tickets">View Events &amp; Tickets →</a>
+        <a class="btn green wide" href="#shows">Open Live Calendar ↓</a>
       </aside>
 
       <section class="jazzycat-band" id="jazzycat" aria-label="JazzyCat marching quartet">
@@ -81,27 +141,17 @@
     </section>
 
     <section class="dashboard shell" aria-label="Homepage feature sections">
-      <section class="panel upcoming" id="shows">
+      <section class="panel official-calendar" id="shows" aria-labelledby="official-calendar-heading">
         <div class="section-head">
-          <h2>✣ Featured BMC Events ✣</h2>
-          <a href="https://www.balconymusicclub.com/events-tickets">View All</a>
+          <div>
+            <h2 id="official-calendar-heading">✣ Official Live Calendar ✣</h2>
+            <p class="calendar-source-note">This window loads the current BMC Shows / Events &amp; Tickets page directly, so the homepage follows the actual venue calendar instead of hardcoded band names.</p>
+          </div>
+          <a href="https://www.balconymusicclub.com/events-tickets">Open Full Calendar</a>
         </div>
-        <div class="show-grid">
-          <article>
-            <small>Featured Music</small>
-            <h3>Willie P's Blues Extravaganza</h3>
-            <p>Blues show • 9:00 PM</p>
-          </article>
-          <article>
-            <small>Happy Hour Thursday</small>
-            <h3>Special Musical Guests</h3>
-            <p>4:30 PM &amp; 5:30 PM</p>
-          </article>
-          <article>
-            <small>Sunday Brunch</small>
-            <h3>Build-Your-Own Bloody Mary Brunch</h3>
-            <p>Noon &amp; 4:00 PM</p>
-          </article>
+        <div class="calendar-frame-wrap">
+          <iframe class="live-calendar-frame" title="Official Balcony Music Club events calendar" src="https://www.balconymusicclub.com/events-tickets" loading="lazy"></iframe>
+          <p class="calendar-fallback">If the live calendar frame does not load, open the official calendar here: <a href="https://www.balconymusicclub.com/events-tickets">Balcony Music Club Events &amp; Tickets</a>.</p>
         </div>
       </section>
 
