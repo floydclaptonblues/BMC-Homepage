@@ -6,11 +6,15 @@
   <title>Balcony Music Club | New Orleans Live Music</title>
   <meta name="description" content="Balcony Music Club official homepage for live music, events, BMC Radio, gallery, and JazzyCat." />
   <link rel="stylesheet" href="bmc_homepage_build/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
   <style>
     :root {
-      --win95: "MS Sans Serif", "Microsoft Sans Serif", Arial, sans-serif;
-      --win98: Tahoma, Verdana, Arial, sans-serif;
-      --winxp: "Trebuchet MS", Verdana, Tahoma, sans-serif;
+      --win95: "Chicago", "ChicagoClassic", "DotGothic16", "MS Sans Serif", "Microsoft Sans Serif", Tahoma, Arial, sans-serif;
+      --win98: "DotGothic16", "MS Gothic", "MS PGothic", Tahoma, Verdana, Arial, sans-serif;
+      --winxp: "Chicago", "ChicagoClassic", "DotGothic16", "Trebuchet MS", Verdana, Tahoma, sans-serif;
+      --pixel: var(--win98);
     }
 
     html,
@@ -19,29 +23,62 @@
       overflow-x: hidden;
     }
 
-    body {
-      font-family: var(--win98);
+    body,
+    p,
+    li,
+    .genre,
+    .set-times,
+    .official-copy {
+      font-family: var(--win98) !important;
     }
 
-    .site-header {
-      font-family: var(--win95);
-    }
-
+    .site-header,
     .main-nav,
     .btn,
-    .live-card,
-    .set-times {
-      font-family: var(--win98);
-    }
-
+    .panel-title,
     .hero-copy .eyebrow,
     .jazzycat-copy strong {
-      font-family: var(--win95);
+      font-family: var(--win95) !important;
     }
 
-    .hero h1 {
-      font-family: var(--winxp);
+    .hero h1,
+    .live-card .artist {
+      font-family: var(--winxp) !important;
       letter-spacing: -.08em;
+    }
+
+    .page-bg {
+      background-image:
+        radial-gradient(circle at 20% 15%, rgba(226, 58, 191, .25), transparent 25%),
+        radial-gradient(circle at 84% 20%, rgba(31, 194, 103, .18), transparent 25%),
+        url("https://floydclaptonblues.github.io/Balcony-Music-Club-PWA/assets/venue/IMG_8447%20(1)%20(1).jpeg") !important;
+      background-size: 900px auto, 900px auto, cover !important;
+      background-position: center top, right top, center center !important;
+      background-repeat: repeat, repeat, no-repeat !important;
+      image-rendering: auto !important;
+    }
+
+    .page-bg::after {
+      background:
+        linear-gradient(90deg, rgba(6, 2, 20, .94) 0%, rgba(6, 2, 20, .62) 42%, rgba(6, 2, 20, .42) 100%),
+        linear-gradient(180deg, rgba(6, 2, 20, .34), rgba(6, 2, 20, .88) 72%, rgba(6, 2, 20, .97)) !important;
+    }
+
+    .stage-photo {
+      height: 140px !important;
+      background-image:
+        linear-gradient(90deg, rgba(18,7,38,.10), rgba(18,7,38,.26)),
+        url("bmc_homepage_build/assets/gallery-4.jpg") !important;
+      background-size: cover !important;
+      background-position: center 48% !important;
+      image-rendering: auto !important;
+    }
+
+    .brand img {
+      width: clamp(250px, 20vw, 390px);
+      max-height: 126px;
+      object-fit: contain;
+      image-rendering: auto;
     }
 
     .hero {
@@ -54,7 +91,6 @@
       max-width: 790px;
       margin: 28px 0 0;
       color: var(--cream);
-      font-family: var(--win98);
       font-size: clamp(20px, 1.9vw, 30px);
       font-style: normal;
       line-height: 1.36;
@@ -63,7 +99,7 @@
 
     .official-copy .copyright-line {
       color: var(--gold);
-      font-family: var(--win95);
+      font-family: var(--win95) !important;
       font-style: normal;
       font-weight: 900;
       letter-spacing: .06em;
@@ -72,7 +108,6 @@
     }
 
     .live-card .genre {
-      font-family: var(--win98);
       color: #78ff9e;
       font-size: 18px;
       font-style: normal;
@@ -82,11 +117,6 @@
     .live-card .set-times div.is-headliner dd,
     .live-card .set-times div.is-headliner dt {
       color: var(--gold);
-    }
-
-    .live-card .artist {
-      font-family: var(--winxp);
-      font-style: normal;
     }
 
     .tagline,
@@ -190,6 +220,6 @@
   </main>
 
   <script src="bmc_homepage_build/script.js"></script>
-  <script src="bmc_homepage_build/home-schedule.js?v=20260614-public-copy"></script>
+  <script src="bmc_homepage_build/home-schedule.js?v=20260614-asset-font-swap"></script>
 </body>
 </html>
