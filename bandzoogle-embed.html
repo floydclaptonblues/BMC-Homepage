@@ -15,7 +15,6 @@
 
     html,
     body {
-      min-height: 100%;
       width: 100%;
       margin: 0;
       overflow-x: hidden;
@@ -23,14 +22,39 @@
     }
 
     body {
+      min-height: 0;
       font-family: var(--win98);
     }
 
     .site-header {
+      position: relative;
+      top: auto;
+      width: min(1840px, calc(100vw - 24px));
+      grid-template-columns: 220px 1fr auto;
+      margin: 12px auto 0;
+      padding: 9px 14px;
+      gap: 18px;
       font-family: var(--win95);
     }
 
-    .main-nav,
+    .brand img {
+      width: 198px;
+    }
+
+    .main-nav {
+      gap: clamp(10px, 1.5vw, 24px);
+      font-family: var(--win98);
+      font-size: clamp(11px, .85vw, 14px);
+      letter-spacing: .06em;
+    }
+
+    .header-actions button,
+    .nav-toggle {
+      min-width: 38px;
+      min-height: 38px;
+      font-size: 18px;
+    }
+
     .btn,
     .live-card,
     .set-times {
@@ -48,24 +72,37 @@
     }
 
     .hero.shell {
-      width: min(1680px, calc(100% - 28px));
+      width: min(1840px, calc(100% - 24px));
       max-width: none;
     }
 
     .hero {
-      min-height: auto;
-      padding-top: clamp(38px, 5vw, 82px);
-      padding-bottom: clamp(260px, 18vw, 360px);
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(460px, 1.35fr) minmax(350px, 430px) minmax(380px, .85fr);
+      gap: clamp(16px, 2vw, 34px);
+      align-items: stretch;
+      padding: clamp(18px, 2.2vw, 36px) 0 clamp(24px, 3vw, 46px);
+    }
+
+    .hero-copy {
+      max-width: 760px;
+      align-self: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(62px, 6.1vw, 118px);
+      line-height: .8;
     }
 
     .official-copy {
-      max-width: 840px;
-      margin: 28px 0 0;
+      max-width: 760px;
+      margin: 24px 0 0;
       color: var(--cream);
       font-family: var(--win98);
-      font-size: clamp(20px, 1.9vw, 32px);
+      font-size: clamp(18px, 1.45vw, 25px);
       font-style: normal;
-      line-height: 1.36;
+      line-height: 1.28;
       text-shadow: 0 2px 0 rgba(0,0,0,.5), 0 0 22px rgba(255, 210, 91, .18);
     }
 
@@ -74,17 +111,77 @@
       font-family: var(--win95);
       font-style: normal;
       font-weight: 900;
-      letter-spacing: .06em;
+      letter-spacing: .04em;
       text-transform: uppercase;
-      white-space: nowrap;
+      white-space: normal;
+    }
+
+    .hero-buttons {
+      margin-top: 20px;
+      gap: 12px;
+    }
+
+    .btn {
+      min-height: 42px;
+      padding: 0 18px;
+      font-size: 12px;
+      font-style: normal !important;
+    }
+
+    .live-card {
+      align-self: center;
+      padding: 18px;
+    }
+
+    .live-card::before {
+      inset: 5px;
+    }
+
+    .panel-title {
+      margin-bottom: 12px;
+      gap: 12px;
+    }
+
+    .live-card h2 {
+      font-family: var(--win98);
+      font-size: 20px;
+      font-style: normal !important;
+    }
+
+    .stage-photo {
+      height: 82px;
+    }
+
+    .live-card .artist {
+      margin: 14px 0 4px;
+      font-family: var(--winxp);
+      font-size: clamp(21px, 1.55vw, 29px);
+      font-style: normal !important;
+      line-height: 1.03;
     }
 
     .live-card .genre {
-      font-family: var(--win98);
+      margin-bottom: 12px;
       color: #78ff9e;
-      font-size: 18px;
-      font-style: normal;
-      line-height: 1.35;
+      font-family: var(--win98);
+      font-size: 14px;
+      font-style: normal !important;
+      line-height: 1.25;
+    }
+
+    .set-times {
+      margin-bottom: 14px;
+      font-style: normal !important;
+    }
+
+    .set-times div {
+      padding: 8px 0;
+      gap: 12px;
+    }
+
+    .set-times dt,
+    .set-times dd {
+      font-size: 13px;
     }
 
     .live-card .set-times div.is-headliner dd,
@@ -92,9 +189,50 @@
       color: var(--gold);
     }
 
-    .live-card .artist {
-      font-family: var(--winxp);
-      font-style: normal;
+    .jazzycat-band {
+      position: relative !important;
+      left: auto !important;
+      right: auto !important;
+      bottom: auto !important;
+      align-self: center;
+      display: grid;
+      grid-template-columns: 1fr;
+      min-height: 0;
+      padding: 18px;
+      gap: 12px;
+      border: 1px solid rgba(255, 210, 91, .42);
+      background: linear-gradient(180deg, rgba(43, 13, 65, .66), rgba(7, 2, 19, .72));
+      box-shadow: var(--shadow), inset 0 0 0 1px rgba(255,255,255,.04);
+    }
+
+    .jazzycat-copy {
+      text-align: left;
+    }
+
+    .jazzycat-copy strong {
+      font-size: 18px;
+      font-style: normal !important;
+    }
+
+    .jazzycat-copy small {
+      font-size: 13px;
+    }
+
+    .paw {
+      font-size: 26px;
+    }
+
+    .cat-march {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: clamp(4px, 1vw, 12px);
+      height: 118px;
+      overflow: visible;
+    }
+
+    .cat {
+      height: clamp(78px, 6.3vw, 116px);
     }
 
     .tagline,
@@ -108,29 +246,62 @@
     }
 
     .site-footer,
-    .dashboard {
+    .dashboard,
+    .bandzoogle-embed-spacer {
       display: none !important;
     }
 
-    .bandzoogle-embed-spacer {
-      height: 22px;
-    }
+    @media (max-width: 1180px) {
+      .site-header {
+        grid-template-columns: 190px 1fr auto;
+      }
 
-    @media (max-width: 1120px) {
-      .hero.shell {
-        width: min(100% - 20px, 980px);
+      .brand img {
+        width: 172px;
       }
 
       .hero {
-        min-height: auto;
-        padding-bottom: 310px;
+        grid-template-columns: minmax(360px, 1fr) minmax(330px, 420px);
+        align-items: center;
+      }
+
+      .jazzycat-band {
+        grid-column: 1 / -1;
+        grid-template-columns: 230px 1fr;
+        align-items: end;
+      }
+
+      .cat-march {
+        justify-content: flex-start;
+        height: 108px;
+      }
+
+      .cat {
+        height: clamp(74px, 9vw, 108px);
       }
     }
 
     @media (max-width: 760px) {
       .site-header {
-        position: relative;
-        top: auto;
+        width: min(100% - 16px, 620px);
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+      }
+
+      .brand img {
+        width: 190px;
+      }
+
+      .main-nav {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 8px 14px;
+        font-size: 11px;
+      }
+
+      .header-actions {
+        display: none;
       }
 
       .hero.shell {
@@ -138,16 +309,43 @@
       }
 
       .hero {
-        padding-top: 26px;
-        padding-bottom: 330px;
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 18px 0 26px;
+      }
+
+      .hero h1 {
+        font-size: clamp(52px, 17vw, 82px);
       }
 
       .official-copy {
-        font-size: clamp(18px, 5.5vw, 24px);
+        margin-top: 18px;
+        font-size: clamp(16px, 4.6vw, 21px);
       }
 
-      .official-copy .copyright-line {
-        white-space: normal;
+      .live-card {
+        padding: 16px;
+      }
+
+      .stage-photo {
+        height: 74px;
+      }
+
+      .jazzycat-band {
+        grid-template-columns: 1fr;
+        padding: 14px;
+      }
+
+      .jazzycat-copy {
+        text-align: center;
+      }
+
+      .cat-march {
+        height: 96px;
+      }
+
+      .cat {
+        height: clamp(64px, 18vw, 92px);
       }
     }
   </style>
@@ -223,42 +421,7 @@
     </section>
   </main>
 
-  <div class="bandzoogle-embed-spacer" aria-hidden="true"></div>
-
   <script src="bmc_homepage_build/script.js"></script>
   <script src="bmc_homepage_build/home-schedule.js?v=20260614-public-copy"></script>
-  <script>
-    (function () {
-      function currentHeight() {
-        return Math.max(
-          document.documentElement.scrollHeight,
-          document.body ? document.body.scrollHeight : 0,
-          document.documentElement.offsetHeight,
-          document.body ? document.body.offsetHeight : 0
-        );
-      }
-
-      function sendHeight() {
-        window.parent.postMessage({
-          source: "bmc-homepage-embed",
-          height: Math.ceil(currentHeight() + 24)
-        }, "*");
-      }
-
-      window.addEventListener("load", sendHeight);
-      window.addEventListener("resize", sendHeight);
-
-      if ("ResizeObserver" in window) {
-        new ResizeObserver(sendHeight).observe(document.documentElement);
-      }
-
-      let ticks = 0;
-      const timer = window.setInterval(function () {
-        sendHeight();
-        ticks += 1;
-        if (ticks > 20) window.clearInterval(timer);
-      }, 250);
-    })();
-  </script>
 </body>
 </html>
