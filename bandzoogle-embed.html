@@ -435,22 +435,45 @@
       }
 
       .embed-page {
-        min-height: 820px;
+        min-height: 930px;
         grid-template-rows: auto 1fr;
       }
 
       .site-header {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
         align-items: center;
-        justify-content: center;
-        padding: 10px 12px;
+        gap: 9px;
+        padding: 10px 10px 12px;
       }
 
       .brand img {
-        width: min(86vw, 345px);
+        width: min(82vw, 335px);
       }
 
-      .main-nav,
+      .main-nav {
+        display: flex !important;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 7px 13px;
+        white-space: normal;
+        font-size: clamp(10px, 2.85vw, 12px);
+        letter-spacing: .035em;
+        line-height: 1.1;
+      }
+
+      .main-nav a {
+        padding: 4px 0 6px;
+      }
+
+      .main-nav a.active::after,
+      .main-nav a:hover::after {
+        height: 3px;
+      }
+
       .header-actions {
         display: none !important;
       }
@@ -458,8 +481,8 @@
       .hero {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 12px;
-        padding: 12px 12px 18px;
+        gap: 10px;
+        padding: 10px 12px 16px;
       }
 
       .hero-copy {
@@ -476,8 +499,8 @@
 
       .official-copy {
         margin: 0;
-        font-size: clamp(16px, 4.3vw, 20px);
-        line-height: 1.28;
+        font-size: clamp(15px, 4.1vw, 19px);
+        line-height: 1.25;
         color: rgba(255, 243, 198, .96);
       }
 
@@ -487,52 +510,58 @@
       }
 
       .hero-buttons {
-        margin-top: 12px;
+        margin-top: 11px;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 10px;
+        gap: 9px;
       }
 
       .btn {
-        min-height: 48px;
-        padding: 0 10px;
-        font-size: 12px;
+        min-height: 44px;
+        padding: 0 8px;
+        font-size: 11px;
         text-align: center;
       }
 
       .live-card {
-        padding: 16px 14px;
+        padding: 15px 14px;
       }
 
-      .live-card::before {
+      .live-card::before,
+      .jazzycat-band::before {
         inset: 6px;
       }
 
       .panel-title {
-        margin-bottom: 12px;
+        margin-bottom: 11px;
       }
 
       .panel-title h2 {
-        font-size: clamp(22px, 7vw, 30px);
+        font-size: clamp(20px, 6.4vw, 28px);
       }
 
       .stage-photo {
-        height: 88px;
+        height: 78px;
       }
 
       .artist {
-        margin-top: 14px;
-        font-size: clamp(22px, 7.4vw, 34px);
+        margin-top: 12px;
+        font-size: clamp(21px, 6.9vw, 32px);
       }
 
       .genre {
-        font-size: clamp(14px, 4vw, 17px);
+        margin-bottom: 10px;
+        font-size: clamp(13px, 3.65vw, 16px);
+      }
+
+      .set-times {
+        margin-bottom: 12px;
       }
 
       .set-times div {
         grid-template-columns: 1fr;
         gap: 2px;
-        padding: 8px 0;
+        padding: 7px 0;
       }
 
       .set-times dd {
@@ -541,18 +570,54 @@
 
       .set-times dt,
       .set-times dd {
-        font-size: 14px;
+        font-size: 13px;
       }
 
       .jazzycat-band {
-        display: none;
+        display: grid;
+        grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+        grid-template-rows: auto;
+        align-items: center;
+        gap: 8px;
+        padding: 12px;
+        min-height: 96px;
+      }
+
+      .jazzycat-copy {
+        text-align: left;
+      }
+
+      .paw {
+        font-size: 18px;
+      }
+
+      .jazzycat-copy strong {
+        font-size: clamp(12px, 3.2vw, 15px);
+        margin: 2px 0;
+      }
+
+      .jazzycat-copy small {
+        font-size: clamp(10px, 2.7vw, 12px);
+        line-height: 1.15;
+      }
+
+      .cat-march {
+        min-height: 72px;
+        gap: 2px;
+        justify-content: flex-end;
+      }
+
+      .cat {
+        height: clamp(42px, 12vw, 62px);
       }
     }
 
     @media (max-width: 420px) {
-      .embed-page { min-height: 860px; }
+      .embed-page { min-height: 960px; }
       .hero-buttons { grid-template-columns: 1fr; }
-      .stage-photo { height: 78px; }
+      .stage-photo { height: 74px; }
+      .main-nav { gap: 7px 10px; }
+      .cat { height: clamp(38px, 11vw, 54px); }
     }
   </style>
 </head>
@@ -624,6 +689,6 @@
     </main>
   </div>
 
-  <script src="bmc_homepage_build/home-schedule.js?v=20260614-mobile-clean"></script>
+  <script src="bmc_homepage_build/home-schedule.js?v=20260614-mobile-menu-cats"></script>
 </body>
 </html>
