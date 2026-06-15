@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="bmc_homepage_build/styles.css?v=logo-revert-jazzycat-room-20260615" />
+  <link rel="stylesheet" href="bmc_homepage_build/styles.css?v=jazzycat-mobile-flow-20260615" />
   <style>
     :root {
       --win95: "DotGothic16", "Chicago", "ChicagoClassic", "MS Sans Serif", "Microsoft Sans Serif", Tahoma, Arial, sans-serif;
@@ -20,10 +20,10 @@
     html,
     body {
       width: 100%;
-      height: 100vh !important;
-      min-height: 0 !important;
+      min-height: 100%;
       margin: 0 !important;
-      overflow: hidden !important;
+      overflow-x: hidden !important;
+      overflow-y: hidden !important;
     }
 
     html,
@@ -103,14 +103,12 @@
     }
 
     main#home {
-      height: calc(100vh - 114px) !important;
       min-height: 0 !important;
       overflow: visible !important;
     }
 
     .hero {
-      height: 100% !important;
-      min-height: 0 !important;
+      min-height: 660px !important;
       padding-top: clamp(16px, 2.3vh, 34px) !important;
       padding-bottom: 172px !important;
       align-items: center !important;
@@ -243,10 +241,6 @@
         max-height: 82px;
       }
 
-      main#home {
-        height: calc(100vh - 108px) !important;
-      }
-
       .hero {
         min-height: 0 !important;
         padding-bottom: 158px !important;
@@ -268,6 +262,10 @@
     }
 
     @media (max-width: 760px) {
+      body {
+        min-height: 1080px !important;
+      }
+
       .site-header {
         margin-top: 8px !important;
         padding: 8px 10px !important;
@@ -278,49 +276,90 @@
         max-height: 72px !important;
       }
 
-      main#home {
-        height: calc(100vh - 104px) !important;
-      }
-
-      .hero {
-        height: 100% !important;
+      .hero.shell {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        grid-template-areas:
+          "copy"
+          "cats"
+          "live" !important;
+        gap: 12px !important;
         min-height: 0 !important;
+        height: auto !important;
         padding-top: 12px !important;
-        padding-bottom: 160px !important;
+        padding-bottom: 58px !important;
+        align-items: start !important;
         overflow: visible !important;
       }
 
-      .hero h1 {
-        font-size: clamp(42px, 13vw, 66px) !important;
-      }
-
-      .official-copy {
-        margin-top: 14px;
-        font-size: clamp(14px, 3.9vw, 18px);
-        line-height: 1.24;
+      .hero-copy {
+        grid-area: copy !important;
       }
 
       .live-card {
-        padding: 14px !important;
+        grid-area: live !important;
+        padding: 12px !important;
         max-width: 650px;
+        width: 100%;
+      }
+
+      .hero h1 {
+        font-size: clamp(40px, 12.4vw, 62px) !important;
+      }
+
+      .official-copy {
+        margin-top: 12px;
+        font-size: clamp(14px, 3.75vw, 18px);
+        line-height: 1.22;
+      }
+
+      .hero-buttons {
+        gap: 10px !important;
+        margin-top: 18px !important;
+      }
+
+      .btn {
+        min-height: 44px !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+      }
+
+      .panel-title {
+        margin-bottom: 10px !important;
+      }
+
+      .panel-title h2 {
+        font-size: clamp(22px, 7vw, 32px) !important;
       }
 
       .stage-photo {
-        height: 76px !important;
+        height: 62px !important;
       }
 
       .live-card .artist {
-        margin-top: 10px !important;
-        font-size: clamp(20px, 6.6vw, 30px) !important;
+        margin-top: 9px !important;
+        margin-bottom: 4px !important;
+        font-size: clamp(20px, 6.2vw, 28px) !important;
       }
 
       .live-card .genre {
-        margin-bottom: 8px !important;
-        font-size: 13px !important;
+        margin-bottom: 6px !important;
+        font-size: 12px !important;
+        line-height: 1.22 !important;
+      }
+
+      .live-card .set-times {
+        margin-bottom: 10px !important;
       }
 
       .live-card .set-times div {
-        padding: 5px 0 !important;
+        padding: 4px 0 !important;
+        gap: 10px !important;
+      }
+
+      .live-card .set-times dt,
+      .live-card .set-times dd {
+        font-size: 13px !important;
       }
 
       .bmc-legal-notice {
@@ -332,47 +371,87 @@
       }
 
       .jazzycat-band {
-        bottom: 34px !important;
-        min-height: 126px !important;
-        padding: 12px 12px 15px !important;
+        grid-area: cats !important;
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        display: grid !important;
+        grid-template-columns: .92fr 1.08fr !important;
+        gap: 8px !important;
+        min-height: 84px !important;
+        margin: 2px 0 0 !important;
+        padding: 10px 12px !important;
         align-items: center !important;
+        border: 1px solid rgba(255,210,91,.28);
+        background: rgba(9,2,22,.45);
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,.035), 0 6px 22px rgba(0,0,0,.25);
+        overflow: hidden !important;
+      }
+
+      .jazzycat-copy {
+        align-self: center !important;
+        padding: 0 !important;
+        text-align: left !important;
+      }
+
+      .jazzycat-copy .paw {
+        font-size: 18px !important;
+        line-height: 1 !important;
       }
 
       .jazzycat-copy strong {
-        font-size: 15px !important;
+        font-size: 13px !important;
+        line-height: 1.05 !important;
+        margin: 2px 0 3px !important;
       }
 
       .jazzycat-copy small {
-        font-size: 12px !important;
-        line-height: 1.3 !important;
-        padding-bottom: 6px !important;
+        display: block !important;
+        font-size: 10px !important;
+        line-height: 1.12 !important;
+        padding: 0 !important;
+        white-space: normal !important;
+        overflow: visible !important;
       }
 
       .cat-march {
-        height: 92px !important;
+        height: 68px !important;
+        min-height: 0 !important;
+        justify-content: flex-end !important;
+        align-items: flex-end !important;
+        gap: 0 !important;
+        overflow: visible !important;
       }
 
       .cat {
-        height: 72px !important;
+        height: 54px !important;
+        margin-left: -10px !important;
       }
     }
 
     @media (max-width: 420px) {
-      main#home {
-        height: calc(100vh - 102px) !important;
+      body {
+        min-height: 1060px !important;
       }
 
-      .hero {
+      .hero.shell {
         padding-top: 10px !important;
-        padding-bottom: 150px !important;
+        padding-bottom: 56px !important;
+        gap: 10px !important;
       }
 
       .cat {
-        height: 60px !important;
+        height: 48px !important;
       }
 
       .cat-march {
-        height: 78px !important;
+        height: 60px !important;
+      }
+
+      .jazzycat-band {
+        min-height: 76px !important;
+        padding: 8px 10px !important;
       }
     }
   </style>
@@ -383,7 +462,7 @@
 
   <header class="site-header">
     <a class="brand" href="https://floydclaptonblues.github.io/BMC-Homepage/" target="_blank" rel="noopener" aria-label="Balcony Music Club home">
-      <img src="bmc_homepage_build/assets/bmc-logo-pixel.png?v=logo-revert-jazzycat-room-20260615" alt="Balcony Music Club" />
+      <img src="bmc_homepage_build/assets/bmc-logo-pixel.png?v=jazzycat-mobile-flow-20260615" alt="Balcony Music Club" />
     </a>
 
     <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
@@ -450,7 +529,7 @@
 
   <footer class="bmc-legal-notice" aria-label="Copyright notice">© 2026 Balcony Music Club. All rights reserved.</footer>
 
-  <script src="bmc_homepage_build/script.js?v=logo-revert-jazzycat-room-20260615"></script>
-  <script src="bmc_homepage_build/home-schedule.js?v=logo-revert-jazzycat-room-20260615"></script>
+  <script src="bmc_homepage_build/script.js?v=jazzycat-mobile-flow-20260615"></script>
+  <script src="bmc_homepage_build/home-schedule.js?v=jazzycat-mobile-flow-20260615"></script>
 </body>
 </html>
