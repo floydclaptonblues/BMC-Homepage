@@ -5,22 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Balcony Music Club | New Orleans Live Music</title>
   <meta name="description" content="Balcony Music Club official homepage for live music, events, BMC Radio, gallery, and JazzyCat." />
-  <link rel="stylesheet" href="bmc_homepage_build/styles.css?v=asset-fonts-20260615" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="bmc_homepage_build/styles.css?v=retro-font-legal-20260615" />
   <style>
     :root {
-      --win95: "Chicago", "ChicagoClassic", "DotGothic16", "MS Sans Serif", "Microsoft Sans Serif", Tahoma, Arial, sans-serif;
+      --win95: "DotGothic16", "Chicago", "ChicagoClassic", "MS Sans Serif", "Microsoft Sans Serif", Tahoma, Arial, sans-serif;
       --win98: "DotGothic16", "MS Gothic", "MS PGothic", Tahoma, Verdana, Arial, sans-serif;
-      --winxp: "Chicago", "ChicagoClassic", "DotGothic16", "Trebuchet MS", Verdana, Tahoma, sans-serif;
-      --pixel: var(--win98);
+      --winxp: "DotGothic16", "Chicago", "ChicagoClassic", "Trebuchet MS", Verdana, Tahoma, sans-serif;
+      --pixel: "DotGothic16", "MS Gothic", "MS PGothic", Tahoma, Verdana, Arial, sans-serif;
     }
 
     html,
     body {
       min-height: 100%;
       overflow-x: hidden;
+    }
+
+    html,
+    body,
+    body *,
+    body *::before,
+    body *::after,
+    button,
+    input,
+    textarea,
+    select {
+      font-family: "DotGothic16", "MS Gothic", "MS PGothic", "Chicago", "ChicagoClassic", Tahoma, Verdana, Arial, sans-serif !important;
     }
 
     body,
@@ -42,7 +54,8 @@
     .btn,
     .panel-title,
     .hero-copy .eyebrow,
-    .jazzycat-copy strong {
+    .jazzycat-copy strong,
+    .bmc-legal-notice {
       font-family: var(--win95) !important;
     }
 
@@ -102,16 +115,6 @@
       text-shadow: 0 2px 0 rgba(0,0,0,.5), 0 0 22px rgba(255, 210, 91, .18);
     }
 
-    .official-copy .copyright-line {
-      color: var(--gold);
-      font-family: var(--win95) !important;
-      font-style: normal;
-      font-weight: 900;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
     .live-card .genre {
       color: #78ff9e;
       font-size: 18px;
@@ -139,16 +142,38 @@
       display: none !important;
     }
 
+    .bmc-legal-notice {
+      position: relative;
+      z-index: 7;
+      width: min(1440px, calc(100vw - 48px));
+      margin: -112px auto 26px;
+      padding: 10px 14px;
+      text-align: center;
+      color: rgba(255, 243, 207, .82);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 0 rgba(0,0,0,.65);
+    }
+
     @media (max-width: 1120px) {
       .hero {
         min-height: auto;
         padding-bottom: 250px;
       }
+
+      .bmc-legal-notice {
+        margin-top: -42px;
+      }
     }
 
     @media (max-width: 760px) {
-      .official-copy .copyright-line {
-        white-space: normal;
+      .bmc-legal-notice {
+        width: calc(100vw - 28px);
+        margin-top: 14px;
+        font-size: 11px;
+        line-height: 1.35;
       }
     }
   </style>
@@ -183,7 +208,7 @@
       <div class="hero-copy">
         <p class="eyebrow">Welcome to</p>
         <h1>Balcony<br />Music Club</h1>
-        <p class="tagline official-copy">Welcome to the official website of Balcony Music Club. Located in the heart of the French Quarter - <span class="copyright-line">© THE CENTER OF THE UNIVERSE BMC 2026</span> - Browse and enjoy.</p>
+        <p class="tagline official-copy">Welcome to the official website of Balcony Music Club. Located in the heart of the French Quarter. Browse and enjoy.</p>
         <div class="hero-buttons">
           <a class="btn gold" href="#live-tonight">Live Tonight ♪</a>
           <a class="btn purple" href="https://floydclaptonblues.github.io/UpcomingShows/">View Full Schedule ▣</a>
@@ -224,7 +249,9 @@
     </section>
   </main>
 
-  <script src="bmc_homepage_build/script.js"></script>
-  <script src="bmc_homepage_build/home-schedule.js?v=20260615-asset-font-homepage"></script>
+  <footer class="bmc-legal-notice" aria-label="Copyright notice">© 2026 Balcony Music Club. All rights reserved.</footer>
+
+  <script src="bmc_homepage_build/script.js?v=retro-font-legal-20260615"></script>
+  <script src="bmc_homepage_build/home-schedule.js?v=retro-font-legal-20260615"></script>
 </body>
 </html>
