@@ -5,690 +5,211 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Balcony Music Club | New Orleans Live Music</title>
   <meta name="description" content="Balcony Music Club official homepage for live music, events, BMC Radio, gallery, and JazzyCat." />
+  <link rel="stylesheet" href="bmc_homepage_build/styles.css" />
   <style>
     :root {
-      --ink: #090216;
-      --deep: #140327;
-      --violet: #2a073e;
-      --purple: #b72cff;
-      --pink: #ff4ecb;
-      --gold: #ffd65f;
-      --cream: #fff3c6;
-      --green: #7cff9f;
-      --line: rgba(255, 214, 95, .34);
-      --magenta-line: rgba(255, 78, 203, .48);
-      --shadow: 0 22px 80px rgba(0, 0, 0, .55);
       --win95: "MS Sans Serif", "Microsoft Sans Serif", Arial, sans-serif;
       --win98: Tahoma, Verdana, Arial, sans-serif;
       --winxp: "Trebuchet MS", Verdana, Tahoma, sans-serif;
     }
 
-    * { box-sizing: border-box; }
-
     html,
     body {
       width: 100%;
-      min-width: 0;
-      max-width: none;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background: #090216;
-      color: var(--cream);
+      min-height: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
       font-family: var(--win98);
-      font-style: normal !important;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background:
-        linear-gradient(90deg, rgba(9, 2, 22, .94), rgba(18, 3, 39, .72), rgba(9, 2, 22, .94)),
-        url("bmc_homepage_build/assets/bmc-bg-tile.webp") center / cover no-repeat;
-      filter: saturate(1.14) contrast(1.02);
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background:
-        repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0 1px, transparent 1px 4px),
-        radial-gradient(circle at 82% 12%, rgba(255, 78, 203, .22), transparent 30%),
-        radial-gradient(circle at 18% 95%, rgba(255, 214, 95, .15), transparent 26%);
-      mix-blend-mode: screen;
-      opacity: .55;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .embed-page {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: none;
-      min-height: 650px;
-      overflow: hidden;
-      display: grid;
-      grid-template-rows: auto 1fr;
     }
 
     .site-header {
-      width: 100%;
-      max-width: none;
-      min-width: 0;
-      display: grid;
-      grid-template-columns: minmax(190px, 300px) minmax(0, 1fr) auto;
-      align-items: center;
-      gap: clamp(16px, 2vw, 42px);
-      padding: 10px clamp(16px, 2.4vw, 46px);
-      border-bottom: 1px solid rgba(255, 214, 95, .24);
-      background: linear-gradient(90deg, rgba(14, 4, 34, .96), rgba(34, 5, 61, .84), rgba(14, 4, 34, .96));
-      box-shadow: 0 12px 36px rgba(0,0,0,.38);
+      font-family: var(--win95);
     }
 
-    .brand img {
-      display: block;
-      width: clamp(190px, 16vw, 290px);
-      max-width: 100%;
-      height: auto;
-      image-rendering: auto;
-    }
-
-    .main-nav {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: clamp(18px, 2.4vw, 48px);
-      min-width: 0;
-      white-space: nowrap;
+    .main-nav,
+    .btn,
+    .live-card,
+    .set-times {
       font-family: var(--win98);
-      font-weight: 900;
-      letter-spacing: .055em;
-      text-transform: uppercase;
-      font-size: clamp(12px, .84vw, 16px);
-      text-shadow: 0 2px 0 #000;
     }
 
-    .main-nav a {
-      position: relative;
-      padding: 8px 0;
-      color: var(--cream);
+    .hero-copy .eyebrow,
+    .jazzycat-copy strong {
+      font-family: var(--win95);
     }
 
-    .main-nav a.active,
-    .main-nav a:hover { color: var(--gold); }
-
-    .main-nav a.active::after,
-    .main-nav a:hover::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--gold), var(--pink));
-      box-shadow: 0 0 14px rgba(255, 78, 203, .5);
-    }
-
-    .header-actions {
-      display: flex;
-      gap: 10px;
-    }
-
-    .header-actions span {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      border: 1px solid rgba(255, 78, 203, .46);
-      color: var(--cream);
-      background: rgba(51, 11, 68, .62);
-      box-shadow: inset 0 0 18px rgba(255, 78, 203, .14);
-      font-size: 18px;
+    .hero h1 {
+      font-family: var(--winxp);
+      letter-spacing: -.08em;
     }
 
     .hero {
-      width: 100%;
-      max-width: none;
-      min-width: 0;
-      min-height: 0;
-      margin: 0;
-      padding: clamp(16px, 1.8vw, 34px) clamp(18px, 2.5vw, 52px) clamp(18px, 2vw, 38px);
-      display: grid;
-      grid-template-columns: minmax(480px, 1.55fr) minmax(330px, 440px) minmax(290px, .72fr);
-      gap: clamp(18px, 2vw, 44px);
-      align-items: center;
-    }
-
-    .hero-copy,
-    .live-card,
-    .jazzycat-band {
-      min-width: 0;
-    }
-
-    .eyebrow {
-      margin: 0 0 10px;
-      font-family: var(--win95);
-      font-size: clamp(13px, 1vw, 19px);
-      font-weight: 900;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--cream);
-      text-shadow: 0 2px 0 #000;
-    }
-
-    h1 {
-      margin: 0;
-      max-width: 980px;
-      font-family: var(--winxp);
-      font-size: clamp(70px, 7.4vw, 140px);
-      line-height: .78;
-      letter-spacing: -.08em;
-      text-transform: uppercase;
-      color: transparent;
-      background: linear-gradient(180deg, #ff5fd3 4%, #ffd05f 38%, #25c97a 69%, #20b4ff 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      text-shadow: 0 8px 0 rgba(27, 8, 76, .88), 0 0 26px rgba(255, 78, 203, .34);
+      min-height: calc(100vh - 138px);
+      padding-top: clamp(36px, 5vh, 70px);
+      padding-bottom: clamp(130px, 14vh, 180px);
     }
 
     .official-copy {
-      max-width: 1040px;
-      margin: clamp(16px, 1.6vw, 28px) 0 0;
-      font-family: var(--win98);
-      font-size: clamp(18px, 1.55vw, 30px);
-      line-height: 1.25;
+      max-width: 790px;
+      margin: 28px 0 0;
       color: var(--cream);
-      text-shadow: 0 2px 0 rgba(0,0,0,.66), 0 0 20px rgba(255, 214, 95, .15);
+      font-family: var(--win98);
+      font-size: clamp(20px, 1.9vw, 30px);
+      font-style: normal;
+      line-height: 1.36;
+      text-shadow: 0 2px 0 rgba(0,0,0,.5), 0 0 22px rgba(255, 210, 91, .18);
     }
 
-    .copyright-line {
+    .official-copy .copyright-line {
       color: var(--gold);
       font-family: var(--win95);
-      font-weight: 900;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-    }
-
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: clamp(16px, 1.4vw, 26px);
-    }
-
-    .btn {
-      min-height: 44px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 22px;
-      border: 1px solid rgba(255,255,255,.2);
-      font-family: var(--win98);
-      font-size: clamp(12px, .88vw, 15px);
+      font-style: normal;
       font-weight: 900;
       letter-spacing: .06em;
       text-transform: uppercase;
-      text-shadow: 0 2px 0 rgba(0,0,0,.5);
-      box-shadow: 0 12px 28px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.38);
+      white-space: nowrap;
     }
 
-    .btn.gold {
-      color: #1a0826;
-      background: linear-gradient(180deg, #fff49b, #ffbe32 60%, #ff8b1c);
+    .live-card .genre {
+      font-family: var(--win98);
+      color: #78ff9e;
+      font-size: 18px;
+      font-style: normal;
+      line-height: 1.35;
     }
 
-    .btn.purple {
-      color: #fff;
-      background: linear-gradient(180deg, #ef6cff, #a727df 55%, #6c10b4);
-    }
-
-    .btn.green {
-      color: #fff;
-      background: linear-gradient(180deg, #21d36b, #10a64d 65%, #057c35);
-    }
-
-    .btn.wide { width: 100%; }
-
-    .live-card,
-    .jazzycat-band {
-      position: relative;
-      border: 1px solid var(--magenta-line);
-      background: linear-gradient(180deg, rgba(57, 9, 73, .82), rgba(18, 2, 35, .9));
-      box-shadow: var(--shadow), inset 0 0 0 1px rgba(255,255,255,.05);
-    }
-
-    .live-card {
-      padding: clamp(16px, 1.2vw, 24px);
-    }
-
-    .live-card::before,
-    .jazzycat-band::before {
-      content: "";
-      position: absolute;
-      inset: 7px;
-      pointer-events: none;
-      border: 1px solid rgba(255, 78, 203, .46);
-    }
-
-    .panel-title {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 14px;
+    .live-card .set-times div.is-headliner dd,
+    .live-card .set-times div.is-headliner dt {
       color: var(--gold);
     }
 
-    .panel-title h2 {
-      margin: 0;
-      font-family: var(--win98);
-      font-size: clamp(20px, 1.35vw, 28px);
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .stage-photo {
-      width: 100%;
-      height: clamp(78px, 5.5vw, 108px);
-      border: 1px solid rgba(255, 78, 203, .52);
-      background: linear-gradient(90deg, rgba(46,0,50,.22), rgba(255,255,255,.08)), url("bmc_homepage_build/assets/gallery-3.jpg") center / cover no-repeat;
-    }
-
-    .artist {
-      margin: 16px 0 5px;
+    .live-card .artist {
       font-family: var(--winxp);
-      font-size: clamp(22px, 1.65vw, 34px);
-      line-height: 1.03;
-      font-weight: 900;
-      color: var(--gold);
-      text-transform: uppercase;
-      text-shadow: 0 3px 0 #000;
+      font-style: normal;
     }
 
-    .genre {
-      margin: 0 0 14px;
-      color: var(--green);
-      font-size: clamp(13px, .9vw, 16px);
-      line-height: 1.25;
-      font-weight: 700;
+    .tagline,
+    .lede,
+    .genre,
+    .artist,
+    .set-times,
+    .btn,
+    .main-nav a {
+      font-style: normal !important;
     }
 
-    .set-times {
-      margin: 0 0 16px;
-      font-family: var(--win98);
+    .site-footer,
+    .dashboard {
+      display: none !important;
     }
 
-    .set-times div {
-      display: grid;
-      grid-template-columns: minmax(112px, .86fr) minmax(0, 1fr);
-      gap: 14px;
-      padding: 7px 0;
-      border-bottom: 1px dotted rgba(255,255,255,.2);
-    }
-
-    .set-times dt,
-    .set-times dd {
-      margin: 0;
-      font-size: clamp(12px, .84vw, 14px);
-      font-weight: 900;
-    }
-
-    .set-times dd {
-      text-align: right;
-      text-transform: uppercase;
-    }
-
-    .set-times .is-headliner dt,
-    .set-times .is-headliner dd { color: var(--gold); }
-
-    .jazzycat-band {
-      display: grid;
-      grid-template-rows: auto 1fr;
-      gap: 14px;
-      align-self: stretch;
-      padding: clamp(16px, 1.2vw, 24px);
-      overflow: hidden;
-    }
-
-    .jazzycat-copy {
-      text-align: left;
+    /* Embed sizing only: keep the repository design, but let the iframe use the available desktop width. */
+    .site-header {
       position: relative;
-      z-index: 2;
+      top: auto;
+      width: min(1680px, calc(100vw - 36px));
     }
 
-    .paw { font-size: 28px; display: block; }
-
-    .jazzycat-copy strong {
-      display: block;
-      margin: 4px 0;
-      font-family: var(--win95);
-      font-size: clamp(16px, 1.1vw, 21px);
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--gold);
-      text-shadow: 0 2px 0 #000;
+    .hero.shell {
+      width: min(1680px, calc(100vw - 48px));
+      max-width: none;
     }
 
-    .jazzycat-copy small {
-      display: block;
-      color: var(--cream);
-      font-size: 13px;
-      line-height: 1.25;
-    }
-
-    .cat-march {
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      gap: clamp(4px, .65vw, 10px);
-      min-height: 120px;
-    }
-
-    .cat {
-      width: auto;
-      height: clamp(78px, 6vw, 116px);
-      object-fit: contain;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,.55));
-    }
-
-    .cat-two,
-    .cat-four { transform: translateY(-8px); }
-    .cat-three { transform: translateY(4px); }
-
-    @media (max-width: 1250px) {
-      .site-header {
-        grid-template-columns: minmax(160px, 240px) minmax(0, 1fr);
-      }
-
-      .header-actions { display: none; }
-
+    @media (min-width: 1500px) {
       .hero {
-        grid-template-columns: minmax(420px, 1.2fr) minmax(315px, 410px);
+        grid-template-columns: minmax(520px, 1fr) minmax(420px, 560px);
+        gap: 42px;
       }
+    }
 
-      .jazzycat-band {
-        grid-column: 1 / -1;
-        grid-template-columns: 230px minmax(0, 1fr);
-        grid-template-rows: auto;
-        align-items: center;
+    @media (max-width: 1120px) {
+      .hero {
+        min-height: auto;
+        padding-bottom: 250px;
       }
-
-      .cat-march { min-height: 96px; }
     }
 
     @media (max-width: 760px) {
-      html,
-      body {
-        overflow: hidden;
-      }
-
-      body::before {
-        background:
-          linear-gradient(180deg, rgba(9, 2, 22, .93), rgba(18, 3, 39, .84)),
-          url("bmc_homepage_build/assets/bmc-bg-tile.webp") center top / cover no-repeat;
-      }
-
-      .embed-page {
-        min-height: 930px;
-        grid-template-rows: auto 1fr;
-      }
-
-      .site-header {
-        display: grid;
-        grid-template-columns: 1fr;
-        justify-items: center;
-        align-items: center;
-        gap: 9px;
-        padding: 10px 10px 12px;
-      }
-
-      .brand img {
-        width: min(82vw, 335px);
-      }
-
-      .main-nav {
-        display: flex !important;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 7px 13px;
+      .official-copy .copyright-line {
         white-space: normal;
-        font-size: clamp(10px, 2.85vw, 12px);
-        letter-spacing: .035em;
-        line-height: 1.1;
       }
-
-      .main-nav a {
-        padding: 4px 0 6px;
-      }
-
-      .main-nav a.active::after,
-      .main-nav a:hover::after {
-        height: 3px;
-      }
-
-      .header-actions {
-        display: none !important;
-      }
-
-      .hero {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 10px;
-        padding: 10px 12px 16px;
-      }
-
-      .hero-copy {
-        padding: 12px;
-        border: 1px solid var(--line);
-        background: rgba(8, 2, 23, .72);
-        box-shadow: inset 0 0 0 1px rgba(255,255,255,.03);
-      }
-
-      .eyebrow,
-      h1 {
-        display: none;
-      }
-
-      .official-copy {
-        margin: 0;
-        font-size: clamp(15px, 4.1vw, 19px);
-        line-height: 1.25;
-        color: rgba(255, 243, 198, .96);
-      }
-
-      .copyright-line {
-        display: inline;
-        letter-spacing: .02em;
-      }
-
-      .hero-buttons {
-        margin-top: 11px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 9px;
-      }
-
-      .btn {
-        min-height: 44px;
-        padding: 0 8px;
-        font-size: 11px;
-        text-align: center;
-      }
-
-      .live-card {
-        padding: 15px 14px;
-      }
-
-      .live-card::before,
-      .jazzycat-band::before {
-        inset: 6px;
-      }
-
-      .panel-title {
-        margin-bottom: 11px;
-      }
-
-      .panel-title h2 {
-        font-size: clamp(20px, 6.4vw, 28px);
-      }
-
-      .stage-photo {
-        height: 78px;
-      }
-
-      .artist {
-        margin-top: 12px;
-        font-size: clamp(21px, 6.9vw, 32px);
-      }
-
-      .genre {
-        margin-bottom: 10px;
-        font-size: clamp(13px, 3.65vw, 16px);
-      }
-
-      .set-times {
-        margin-bottom: 12px;
-      }
-
-      .set-times div {
-        grid-template-columns: 1fr;
-        gap: 2px;
-        padding: 7px 0;
-      }
-
-      .set-times dd {
-        text-align: left;
-      }
-
-      .set-times dt,
-      .set-times dd {
-        font-size: 13px;
-      }
-
-      .jazzycat-band {
-        display: grid;
-        grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
-        grid-template-rows: auto;
-        align-items: center;
-        gap: 8px;
-        padding: 12px;
-        min-height: 96px;
-      }
-
-      .jazzycat-copy {
-        text-align: left;
-      }
-
-      .paw {
-        font-size: 18px;
-      }
-
-      .jazzycat-copy strong {
-        font-size: clamp(12px, 3.2vw, 15px);
-        margin: 2px 0;
-      }
-
-      .jazzycat-copy small {
-        font-size: clamp(10px, 2.7vw, 12px);
-        line-height: 1.15;
-      }
-
-      .cat-march {
-        min-height: 72px;
-        gap: 2px;
-        justify-content: flex-end;
-      }
-
-      .cat {
-        height: clamp(42px, 12vw, 62px);
-      }
-    }
-
-    @media (max-width: 420px) {
-      .embed-page { min-height: 960px; }
-      .hero-buttons { grid-template-columns: 1fr; }
-      .stage-photo { height: 74px; }
-      .main-nav { gap: 7px 10px; }
-      .cat { height: clamp(38px, 11vw, 54px); }
     }
   </style>
 </head>
 <body>
-  <div class="embed-page">
-    <header class="site-header">
-      <a class="brand" href="https://floydclaptonblues.github.io/BMC-Homepage/" target="_blank" rel="noopener" aria-label="Balcony Music Club home">
-        <img src="bmc_homepage_build/assets/bmc-logo-pixel.png" alt="Balcony Music Club" />
-      </a>
+  <div class="page-bg" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
 
-      <nav class="main-nav" aria-label="Primary navigation">
-        <a href="https://floydclaptonblues.github.io/BMC-Homepage/" target="_blank" rel="noopener" class="active">Home</a>
-        <a href="https://floydclaptonblues.github.io/UpcomingShows/" target="_blank" rel="noopener">Shows</a>
-        <a href="https://www.balconymusicclub.com/host-your-event" target="_blank" rel="noopener">Host Your Event</a>
-        <a href="https://www.balconymusicclub.com/store" target="_blank" rel="noopener">Store</a>
-        <a href="https://www.balconymusicclub.com/ask-jazzycat" target="_blank" rel="noopener">Ask JazzyCat</a>
-      </nav>
+  <header class="site-header">
+    <a class="brand" href="https://floydclaptonblues.github.io/BMC-Homepage/" target="_blank" rel="noopener" aria-label="Balcony Music Club home">
+      <img src="bmc_homepage_build/assets/bmc-logo-pixel.png" alt="Balcony Music Club" />
+    </a>
 
-      <div class="header-actions" aria-hidden="true">
-        <span>⌕</span>
-        <span>♫</span>
-      </div>
-    </header>
+    <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
 
-    <main id="home">
-      <section class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Welcome to</p>
-          <h1>Balcony<br />Music Club</h1>
-          <p class="official-copy">Welcome to the official website of Balcony Music Club. Located in the heart of the French Quarter - <span class="copyright-line">© THE CENTER OF THE UNIVERSE BMC 2026</span> - Browse and enjoy.</p>
-          <div class="hero-buttons">
-            <a class="btn gold" href="#live-tonight">Live Tonight ♪</a>
-            <a class="btn purple" href="https://floydclaptonblues.github.io/UpcomingShows/" target="_blank" rel="noopener">View Full Schedule ▣</a>
-          </div>
+    <nav class="main-nav" aria-label="Primary navigation">
+      <a href="https://floydclaptonblues.github.io/BMC-Homepage/" target="_blank" rel="noopener" class="active">Home</a>
+      <a href="https://floydclaptonblues.github.io/UpcomingShows/" target="_blank" rel="noopener">Shows</a>
+      <a href="https://www.balconymusicclub.com/host-your-event" target="_blank" rel="noopener">Host Your Event</a>
+      <a href="https://www.balconymusicclub.com/store" target="_blank" rel="noopener">Store</a>
+      <a href="https://www.balconymusicclub.com/ask-jazzycat" target="_blank" rel="noopener">Ask JazzyCat</a>
+    </nav>
+
+    <div class="header-actions">
+      <button aria-label="Search">⌕</button>
+      <button aria-label="Music">♫</button>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero shell">
+      <div class="hero-copy">
+        <p class="eyebrow">Welcome to</p>
+        <h1>Balcony<br />Music Club</h1>
+        <p class="tagline official-copy">Welcome to the official website of Balcony Music Club. Located in the heart of the French Quarter - <span class="copyright-line">© THE CENTER OF THE UNIVERSE BMC 2026</span> - Browse and enjoy.</p>
+        <div class="hero-buttons">
+          <a class="btn gold" href="#live-tonight">Live Tonight ♪</a>
+          <a class="btn purple" href="https://floydclaptonblues.github.io/UpcomingShows/" target="_blank" rel="noopener">View Full Schedule ▣</a>
         </div>
+      </div>
 
-        <aside class="live-card" id="live-tonight" aria-labelledby="live-heading">
-          <div class="panel-title">
-            <span>✦</span>
-            <h2 id="live-heading">Live Tonight</h2>
-            <span>✦</span>
-          </div>
-          <div class="stage-photo"></div>
-          <p class="artist" data-live-title>Loading Schedule…</p>
-          <p class="genre" data-live-subtitle>Tonight’s lineup and upcoming dates refresh automatically. Times and artists subject to change.</p>
-          <dl class="set-times" data-live-events>
-            <div><dt>Schedule</dt><dd>Updating</dd></div>
-            <div><dt>Status</dt><dd>Loading</dd></div>
-            <div><dt>Venue</dt><dd>504 Esplanade</dd></div>
-            <div><dt>City</dt><dd>New Orleans</dd></div>
-          </dl>
-          <a class="btn green wide" href="https://floydclaptonblues.github.io/UpcomingShows/" target="_blank" rel="noopener">See Upcoming Shows ↓</a>
-        </aside>
+      <aside class="live-card" id="live-tonight" aria-labelledby="live-heading">
+        <div class="panel-title">
+          <span>✦</span>
+          <h2 id="live-heading">Live Tonight</h2>
+          <span>✦</span>
+        </div>
+        <div class="stage-photo"></div>
+        <p class="artist" data-live-title>Loading Schedule…</p>
+        <p class="genre" data-live-subtitle>Tonight’s lineup and upcoming dates refresh automatically. Times and artists subject to change.</p>
+        <dl class="set-times" data-live-events>
+          <div><dt>Schedule</dt><dd>Updating</dd></div>
+          <div><dt>Status</dt><dd>Loading</dd></div>
+          <div><dt>Venue</dt><dd>504 Esplanade</dd></div>
+          <div><dt>City</dt><dd>New Orleans</dd></div>
+        </dl>
+        <a class="btn green wide" href="https://floydclaptonblues.github.io/UpcomingShows/" target="_blank" rel="noopener">See Upcoming Shows ↓</a>
+      </aside>
 
-        <section class="jazzycat-band" id="jazzycat" aria-label="JazzyCat marching quartet">
-          <div class="jazzycat-copy">
-            <span class="paw">🐾</span>
-            <strong>Meet JazzyCat</strong>
-            <small>Our house band never takes a night off.</small>
-          </div>
-          <div class="cat-march" aria-hidden="true">
-            <img src="bmc_homepage_build/assets/jazzycat-1.png" alt="" class="cat cat-one" />
-            <img src="bmc_homepage_build/assets/jazzycat-2.png" alt="" class="cat cat-two" />
-            <img src="bmc_homepage_build/assets/jazzycat-3.png" alt="" class="cat cat-three" />
-            <img src="bmc_homepage_build/assets/jazzycat-4.png" alt="" class="cat cat-four" />
-          </div>
-        </section>
+      <section class="jazzycat-band" id="jazzycat" aria-label="JazzyCat marching quartet">
+        <div class="jazzycat-copy">
+          <span class="paw">🐾</span>
+          <strong>Meet JazzyCat</strong>
+          <small>Our house band never takes a night off.</small>
+        </div>
+        <div class="cat-march" aria-hidden="true">
+          <img src="bmc_homepage_build/assets/jazzycat-1.png" alt="" class="cat cat-one" />
+          <img src="bmc_homepage_build/assets/jazzycat-2.png" alt="" class="cat cat-two" />
+          <img src="bmc_homepage_build/assets/jazzycat-3.png" alt="" class="cat cat-three" />
+          <img src="bmc_homepage_build/assets/jazzycat-4.png" alt="" class="cat cat-four" />
+        </div>
       </section>
-    </main>
-  </div>
+    </section>
+  </main>
 
-  <script src="bmc_homepage_build/home-schedule.js?v=20260614-mobile-menu-cats"></script>
+  <script src="bmc_homepage_build/script.js"></script>
+  <script src="bmc_homepage_build/home-schedule.js?v=20260614-repo-design-embed"></script>
 </body>
 </html>
