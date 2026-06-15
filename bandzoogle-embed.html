@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="bmc_homepage_build/styles.css?v=jazzycat-mobile-flow-20260615" />
+  <link rel="stylesheet" href="bmc_homepage_build/styles.css?v=social-squares-20260615" />
   <style>
     :root {
       --win95: "DotGothic16", "Chicago", "ChicagoClassic", "MS Sans Serif", "Microsoft Sans Serif", Tahoma, Arial, sans-serif;
@@ -58,7 +58,9 @@
     .panel-title,
     .hero-copy .eyebrow,
     .jazzycat-copy strong,
-    .bmc-legal-notice {
+    .bmc-legal-notice,
+    .header-actions a,
+    .social-square {
       font-family: var(--win95) !important;
     }
 
@@ -100,6 +102,45 @@
       max-height: 98px;
       object-fit: contain;
       image-rendering: auto;
+    }
+
+    .header-actions {
+      display: flex !important;
+      gap: 8px !important;
+      align-items: center !important;
+      justify-content: flex-end !important;
+    }
+
+    .header-actions a {
+      display: grid !important;
+      place-items: center !important;
+      width: 44px !important;
+      min-width: 44px !important;
+      height: 44px !important;
+      min-height: 44px !important;
+      border: 1px solid rgba(226, 58, 191, .58) !important;
+      background: rgba(26, 5, 46, .72) !important;
+      color: var(--cream) !important;
+      text-decoration: none !important;
+      font-size: 12px !important;
+      font-weight: 950 !important;
+      letter-spacing: .04em !important;
+      text-transform: uppercase !important;
+      text-shadow: 0 2px 0 rgba(0,0,0,.7) !important;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.055), 0 0 18px rgba(226,58,191,.22) !important;
+    }
+
+    .header-actions a:hover,
+    .header-actions a:focus-visible {
+      color: var(--gold) !important;
+      border-color: rgba(255,210,91,.76) !important;
+      outline: none !important;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08), 0 0 20px rgba(255,210,91,.24) !important;
+    }
+
+    .header-actions .app-square {
+      font-size: 10px !important;
+      letter-spacing: .02em !important;
     }
 
     main#home {
@@ -274,6 +315,10 @@
       .brand img {
         width: min(62vw, 250px) !important;
         max-height: 72px !important;
+      }
+
+      .header-actions {
+        display: none !important;
       }
 
       .hero.shell {
@@ -462,7 +507,7 @@
 
   <header class="site-header">
     <a class="brand" href="https://floydclaptonblues.github.io/BMC-Homepage/" target="_blank" rel="noopener" aria-label="Balcony Music Club home">
-      <img src="bmc_homepage_build/assets/bmc-logo-pixel.png?v=jazzycat-mobile-flow-20260615" alt="Balcony Music Club" />
+      <img src="bmc_homepage_build/assets/bmc-logo-pixel.png?v=social-squares-20260615" alt="Balcony Music Club" />
     </a>
 
     <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
@@ -475,9 +520,11 @@
       <a href="https://www.balconymusicclub.com/ask-jazzycat" target="_blank" rel="noopener">Ask JazzyCat</a>
     </nav>
 
-    <div class="header-actions">
-      <button aria-label="Search">⌕</button>
-      <button aria-label="Music">♫</button>
+    <div class="header-actions" aria-label="Social and app links">
+      <a class="social-square" href="https://www.instagram.com/balconymusicclub" target="_blank" rel="noopener" aria-label="Balcony Music Club on Instagram">IG</a>
+      <a class="social-square" href="https://www.youtube.com/@balconymusicclub" target="_blank" rel="noopener" aria-label="Balcony Music Club on YouTube">YT</a>
+      <a class="social-square" href="https://www.facebook.com/balconymusicclub" target="_blank" rel="noopener" aria-label="Balcony Music Club on Facebook">FB</a>
+      <a class="social-square app-square" href="https://floydclaptonblues.github.io/Balcony-Music-Club-PWA/" target="_blank" rel="noopener" aria-label="Open the Balcony Music Club app">APP</a>
     </div>
   </header>
 
@@ -529,7 +576,7 @@
 
   <footer class="bmc-legal-notice" aria-label="Copyright notice">© 2026 Balcony Music Club. All rights reserved.</footer>
 
-  <script src="bmc_homepage_build/script.js?v=jazzycat-mobile-flow-20260615"></script>
-  <script src="bmc_homepage_build/home-schedule.js?v=jazzycat-mobile-flow-20260615"></script>
+  <script src="bmc_homepage_build/script.js?v=social-squares-20260615"></script>
+  <script src="bmc_homepage_build/home-schedule.js?v=social-squares-20260615"></script>
 </body>
 </html>
