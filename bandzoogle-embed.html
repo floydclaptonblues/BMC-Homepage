@@ -16,7 +16,10 @@
     html,
     body {
       min-height: 100%;
+      width: 100%;
+      margin: 0;
       overflow-x: hidden;
+      background: #090216;
     }
 
     body {
@@ -44,18 +47,23 @@
       letter-spacing: -.08em;
     }
 
+    .hero.shell {
+      width: min(1680px, calc(100% - 28px));
+      max-width: none;
+    }
+
     .hero {
-      min-height: calc(100vh - 138px);
-      padding-top: clamp(36px, 5vh, 70px);
-      padding-bottom: clamp(130px, 14vh, 180px);
+      min-height: auto;
+      padding-top: clamp(38px, 5vw, 82px);
+      padding-bottom: clamp(260px, 18vw, 360px);
     }
 
     .official-copy {
-      max-width: 790px;
+      max-width: 840px;
       margin: 28px 0 0;
       color: var(--cream);
       font-family: var(--win98);
-      font-size: clamp(20px, 1.9vw, 30px);
+      font-size: clamp(20px, 1.9vw, 32px);
       font-style: normal;
       line-height: 1.36;
       text-shadow: 0 2px 0 rgba(0,0,0,.5), 0 0 22px rgba(255, 210, 91, .18);
@@ -104,14 +112,40 @@
       display: none !important;
     }
 
+    .bandzoogle-embed-spacer {
+      height: 22px;
+    }
+
     @media (max-width: 1120px) {
+      .hero.shell {
+        width: min(100% - 20px, 980px);
+      }
+
       .hero {
         min-height: auto;
-        padding-bottom: 250px;
+        padding-bottom: 310px;
       }
     }
 
     @media (max-width: 760px) {
+      .site-header {
+        position: relative;
+        top: auto;
+      }
+
+      .hero.shell {
+        width: min(100% - 16px, 620px);
+      }
+
+      .hero {
+        padding-top: 26px;
+        padding-bottom: 330px;
+      }
+
+      .official-copy {
+        font-size: clamp(18px, 5.5vw, 24px);
+      }
+
       .official-copy .copyright-line {
         white-space: normal;
       }
@@ -189,7 +223,42 @@
     </section>
   </main>
 
+  <div class="bandzoogle-embed-spacer" aria-hidden="true"></div>
+
   <script src="bmc_homepage_build/script.js"></script>
   <script src="bmc_homepage_build/home-schedule.js?v=20260614-public-copy"></script>
+  <script>
+    (function () {
+      function currentHeight() {
+        return Math.max(
+          document.documentElement.scrollHeight,
+          document.body ? document.body.scrollHeight : 0,
+          document.documentElement.offsetHeight,
+          document.body ? document.body.offsetHeight : 0
+        );
+      }
+
+      function sendHeight() {
+        window.parent.postMessage({
+          source: "bmc-homepage-embed",
+          height: Math.ceil(currentHeight() + 24)
+        }, "*");
+      }
+
+      window.addEventListener("load", sendHeight);
+      window.addEventListener("resize", sendHeight);
+
+      if ("ResizeObserver" in window) {
+        new ResizeObserver(sendHeight).observe(document.documentElement);
+      }
+
+      let ticks = 0;
+      const timer = window.setInterval(function () {
+        sendHeight();
+        ticks += 1;
+        if (ticks > 20) window.clearInterval(timer);
+      }, 250);
+    })();
+  </script>
 </body>
 </html>
