@@ -99,16 +99,15 @@ async function fetchScheduleData() {
     const url = `${source}${source.includes("?") ? "&" : "?"}${cacheBust}`;
     try {
       const response = await fetch(url, { cache: "no-store" });
-      if (!response.ok) throw new Error(`${response.status} from ${source}`);
+      if (!response.ok) throw new Error(`${response.status}`);
       const data = await response.json();
-      return { data, source };
+      return { data };
     } catch (error) {
       lastError = error;
-      console.warn("Could not load BMC schedule source:", source, error);
     }
   }
 
-  throw lastError || new Error("No schedule source responded.");
+  throw lastError || new Error("Schedule unavailable.");
 }
 
 function renderEmpty(message = "Upcoming shows will be posted here soon.") {
@@ -116,8 +115,8 @@ function renderEmpty(message = "Upcoming shows will be posted here soon.") {
   if (scheduleEls.liveSubtitle) scheduleEls.liveSubtitle.textContent = message;
   if (scheduleEls.liveEvents) {
     scheduleEls.liveEvents.innerHTML = `
-      <div><dt>Source</dt><dd>UpcomingShows GitHub repo</dd></div>
-      <div><dt>Status</dt><dd>Waiting for new dates</dd></div>
+      <div><dt>Schedule</dt><dd>Updating Soon</dd></div>
+      <div><dt>Status</dt><dd>Check Back Shortly</dd></div>
       <div><dt>Venue</dt><dd>504 Esplanade</dd></div>
       <div><dt>City</dt><dd>New Orleans</dd></div>
     `;
@@ -142,7 +141,7 @@ function renderLiveCard(days, data) {
 
   const count = (focus.shows || []).length;
   if (scheduleEls.liveSubtitle) {
-    scheduleEls.liveSubtitle.textContent = `${count} performance${count === 1 ? "" : "s"} loaded from the UpcomingShows GitHub schedule.`;
+    scheduleEls.liveSubtitle.textContent = `${count} performance${count === 1 ? "" : "s"} scheduled. Times and artists subject to change.`;
   }
 
   if (scheduleEls.liveEvents) {
@@ -155,16 +154,16 @@ function renderLiveCard(days, data) {
   }
 }
 
-function renderScheduleGrid(days, data, source) {
+function renderScheduleGrid(days, data) {
   const eventCount = days.reduce((sum, day) => sum + (day.shows || []).length, 0);
   const today = todayPartsForVenue();
 
   if (scheduleEls.summary) {
-    scheduleEls.summary.textContent = `${days.length} upcoming show days • ${eventCount} performances • pulled live from floydclaptonblues/UpcomingShows.`;
+    scheduleEls.summary.textContent = `${days.length} upcoming show days • ${eventCount} performances`;
   }
 
   if (scheduleEls.source) {
-    scheduleEls.source.textContent = `Last checked ${today.weekday} ${today.month}/${today.day}/${today.year} at ${today.time} Central • Source: ${source.includes("raw.githubusercontent") ? "raw GitHub fallback" : "UpcomingShows GitHub Pages"}`;
+    scheduleEls.source.textContent = `Last checked ${today.weekday} ${today.month}/${today.day}/${today.year} at ${today.time} Central • Schedule subject to change.`;
   }
 
   if (!scheduleEls.grid) return;
@@ -192,13 +191,12 @@ async function bootHomepageSchedule() {
   if (!scheduleEls.liveTitle && !scheduleEls.grid) return;
 
   try {
-    const { data, source } = await fetchScheduleData();
+    const { data } = await fetchScheduleData();
     const days = filterUpcomingDays(data);
     renderLiveCard(days, data);
-    renderScheduleGrid(days, data, source);
+    renderScheduleGrid(days, data);
   } catch (error) {
-    console.error("BMC homepage schedule unavailable:", error);
-    renderEmpty("The live schedule could not load from the UpcomingShows repository. Open the full Shows page for the latest listing.");
+    renderEmpty("The live schedule is temporarily unavailable. Please open the full schedule for the latest listing.");
   }
 }
 
