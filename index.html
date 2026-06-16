@@ -56,7 +56,8 @@
     .panel-title,
     .hero-copy .eyebrow,
     .jazzycat-copy strong,
-    .bmc-legal-notice {
+    .bmc-legal-notice,
+    .bmc-home-radio {
       font-family: var(--win95) !important;
     }
 
@@ -98,6 +99,174 @@
       max-height: 126px;
       object-fit: contain;
       image-rendering: auto;
+    }
+
+    .bmc-home-radio {
+      position: relative;
+      z-index: 16;
+      width: min(1100px, calc(100vw - 36px));
+      margin: 10px auto -18px;
+      box-sizing: border-box;
+    }
+
+    .bmc-home-radio__bar {
+      position: relative;
+      min-height: 48px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: auto minmax(180px, 1fr) auto minmax(140px, 240px) auto auto;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 10px;
+      color: #fff;
+      border: 1px solid rgba(143, 252, 255, .76);
+      border-radius: 999px;
+      background:
+        linear-gradient(rgba(10,10,35,.50), rgba(28,0,52,.58)),
+        url('https://img-cdn.publive.online/filters:format(webp)/indigomusic/media/post_attachments/wp-content/uploads/2024/06/Vaporwave-aesthetic-1.jpg') center center / cover no-repeat;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.14) inset,
+        0 0 16px rgba(0,255,255,.18),
+        0 0 28px rgba(255,0,180,.12),
+        0 10px 26px rgba(0,0,0,.34);
+    }
+
+    .bmc-home-radio__bar::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .42;
+      background:
+        linear-gradient(to bottom, rgba(255,255,255,.07), rgba(255,255,255,0)),
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,.035) 0px,
+          rgba(255,255,255,.035) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+      mix-blend-mode: screen;
+    }
+
+    .bmc-home-radio__badge,
+    .bmc-home-radio__track,
+    .bmc-home-radio__button,
+    .bmc-home-radio__time,
+    .bmc-home-radio__vol {
+      position: relative;
+      z-index: 1;
+    }
+
+    .bmc-home-radio__badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 30px;
+      padding: 0 10px;
+      border: 1px solid rgba(143,252,255,.55);
+      border-radius: 999px;
+      background: rgba(0,0,0,.32);
+      color: #8ffcff;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      box-shadow: 0 0 8px rgba(143,252,255,.18);
+    }
+
+    .bmc-home-radio__track {
+      min-width: 0;
+      line-height: 1;
+    }
+
+    .bmc-home-radio__track strong {
+      display: block;
+      color: #fff;
+      font-size: 13px;
+      text-shadow: 0 0 8px rgba(255,0,200,.35);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .bmc-home-radio__track span {
+      display: block;
+      margin-top: 3px;
+      color: #ffd8fa;
+      font-size: 9px;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .bmc-home-radio__button {
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      min-height: 32px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ff4fd8, #7df9ff);
+      color: #16001f;
+      font-size: 12px;
+      font-weight: 900;
+      box-shadow: 0 0 12px rgba(255,0,184,.28);
+      white-space: nowrap;
+    }
+
+    .bmc-home-radio__button:active {
+      transform: translateY(1px);
+    }
+
+    .bmc-home-radio__meter {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.16);
+      overflow: hidden;
+      box-shadow: inset 0 0 6px rgba(0,0,0,.35);
+    }
+
+    .bmc-home-radio__meter span {
+      display: block;
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #7df9ff, #ff4fd8);
+      box-shadow: 0 0 10px rgba(125,249,255,.55);
+    }
+
+    .bmc-home-radio__time {
+      min-width: 76px;
+      color: #eefcff;
+      font-size: 10px;
+      text-align: right;
+      text-shadow: 0 0 5px rgba(125,249,255,.30);
+      white-space: nowrap;
+    }
+
+    .bmc-home-radio__vol {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 32px;
+      padding: 0 10px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 999px;
+      background: rgba(0,0,0,.24);
+      color: #fff;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    .bmc-home-radio__vol input {
+      width: 68px;
+      accent-color: #7df9ff;
     }
 
     .hero {
@@ -167,9 +336,52 @@
       .bmc-legal-notice {
         margin-top: -42px;
       }
+
+      .bmc-home-radio__bar {
+        grid-template-columns: auto minmax(170px, 1fr) auto minmax(110px, 1fr) auto;
+      }
+
+      .bmc-home-radio__vol {
+        display: none;
+      }
     }
 
     @media (max-width: 760px) {
+      .bmc-home-radio {
+        width: min(100% - 18px, 1100px);
+        margin: 8px auto 0;
+      }
+
+      .bmc-home-radio__bar {
+        border-radius: 14px;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+        padding: 8px;
+      }
+
+      .bmc-home-radio__badge {
+        grid-column: 1 / -1;
+        justify-self: start;
+      }
+
+      .bmc-home-radio__track {
+        grid-column: 1 / 2;
+      }
+
+      .bmc-home-radio__button {
+        grid-column: 2 / 3;
+      }
+
+      .bmc-home-radio__meter,
+      .bmc-home-radio__time {
+        grid-column: 1 / -1;
+      }
+
+      .bmc-home-radio__time {
+        min-width: 0;
+        text-align: left;
+      }
+
       .bmc-legal-notice {
         width: calc(100vw - 28px);
         margin-top: 14px;
@@ -206,6 +418,21 @@
     </div>
   </header>
 
+  <section class="bmc-home-radio" id="bmcHomeRadio" aria-label="BMC Radio slim homepage player">
+    <div class="bmc-home-radio__bar">
+      <div class="bmc-home-radio__badge">BMC Radio</div>
+      <div class="bmc-home-radio__track">
+        <strong id="bmcHomeRadioTitle">Parade On Esplanade</strong>
+        <span>Balcony Music Club Signal • Autoplay Requested</span>
+      </div>
+      <button class="bmc-home-radio__button" id="bmcHomeRadioPlay" type="button">▶ Play</button>
+      <div class="bmc-home-radio__meter" aria-hidden="true"><span id="bmcHomeRadioProgress"></span></div>
+      <div class="bmc-home-radio__time" id="bmcHomeRadioTime">0:00 / 0:00</div>
+      <label class="bmc-home-radio__vol">Vol <input id="bmcHomeRadioVolume" type="range" min="0" max="1" step="0.01" value="0.18"></label>
+      <audio id="bmcHomeRadioAudio" preload="auto" autoplay playsinline></audio>
+    </div>
+  </section>
+
   <main id="home">
     <section class="hero shell">
       <div class="hero-copy">
@@ -215,7 +442,7 @@
         <div class="hero-buttons">
           <a class="btn gold" href="#live-tonight">Live Tonight ♪</a>
           <a class="btn purple" href="https://shows.balconymusicclub.com/">View Full Schedule ▣</a>
-          <a class="btn green" href="https://shows.balconymusicclub.com/#bmcRadioMini">Play Music ♫</a>
+          <a class="btn green" href="#bmcHomeRadio" data-bmc-radio-trigger>Play Music ♫</a>
         </div>
       </div>
 
@@ -255,6 +482,218 @@
 
   <footer class="bmc-legal-notice" aria-label="Copyright notice">© 2026 Balcony Music Club. All rights reserved.</footer>
 
+  <script>
+  (function mountBmcHomeRadio(){
+    var KEY = "__BMC_HOME_RADIO_PLAYER__";
+    var CHANNEL_NAME = "bmc_sitewide_radio_channel";
+    var STORAGE_KEY = "__BMC_SITEWIDE_STOP__";
+    var INSTANCE_ID = "bmc_home_" + Date.now() + "_" + Math.random().toString(36).slice(2);
+    var bc = null;
+
+    var playlist = [
+      {
+        title: "Parade On Esplanade",
+        src: "https://img1.wsimg.com/blobby/go/fcde905d-e711-4bbd-8961-6b9df0cf58b2/downloads/a862837f-91fa-448b-bb7a-8e02d7e68ac7/ONE%20MO_%20_GIN.mp3?ver=1775241263886"
+      },
+      {
+        title: "Ghost Parade On Canal",
+        src: "https://img1.wsimg.com/blobby/go/fcde905d-e711-4bbd-8961-6b9df0cf58b2/downloads/f079c265-e581-4b05-a37d-65b396267fb1/Ghost%20Parade%20on%20Canal.mp3?ver=1774633564261"
+      }
+    ];
+
+    if (window[KEY] && typeof window[KEY].cleanup === "function") {
+      try { window[KEY].cleanup(); } catch(e) {}
+    }
+
+    var wrap = document.getElementById("bmcHomeRadio");
+    var audio = document.getElementById("bmcHomeRadioAudio");
+    var playBtn = document.getElementById("bmcHomeRadioPlay");
+    var vol = document.getElementById("bmcHomeRadioVolume");
+    var progress = document.getElementById("bmcHomeRadioProgress");
+    var time = document.getElementById("bmcHomeRadioTime");
+    var titleEl = document.getElementById("bmcHomeRadioTitle");
+    var triggers = document.querySelectorAll("[data-bmc-radio-trigger]");
+
+    if (!wrap || !audio || !playBtn || !vol || !progress || !time || !titleEl) return;
+
+    var currentIndex = 0;
+
+    function safePause(target){
+      if (!target) return;
+      try { target.pause(); } catch(e) {}
+    }
+
+    function hardStop(target){
+      if (!target) return;
+      try { target.pause(); } catch(e) {}
+      try { target.currentTime = 0; } catch(e) {}
+      try { target.removeAttribute("src"); } catch(e) {}
+      try { target.load(); } catch(e) {}
+    }
+
+    function pauseOtherAudioOnPage(){
+      try {
+        var audios = document.querySelectorAll("audio");
+        for (var i = 0; i < audios.length; i += 1) {
+          var item = audios[i];
+          if (item !== audio) {
+            try { item.pause(); item.currentTime = 0; } catch(e) {}
+          }
+        }
+      } catch(e) {}
+    }
+
+    function sendStopSignal(){
+      var payload = JSON.stringify({ id: INSTANCE_ID, t: Date.now() });
+      try { localStorage.setItem(STORAGE_KEY, payload); } catch(e) {}
+      try {
+        if (!bc && "BroadcastChannel" in window) bc = new BroadcastChannel(CHANNEL_NAME);
+        if (bc) bc.postMessage(payload);
+      } catch(e) {}
+    }
+
+    function stopThisInstance(){
+      safePause(audio);
+      updateBtn();
+    }
+
+    function onExternalStop(raw){
+      try {
+        var data = typeof raw === "string" ? JSON.parse(raw) : raw;
+        if (!data || data.id === INSTANCE_ID) return;
+        stopThisInstance();
+      } catch(e) {}
+    }
+
+    function onStorage(event){
+      if (event.key === STORAGE_KEY && event.newValue) onExternalStop(event.newValue);
+    }
+
+    function fmt(seconds){
+      if (!Number.isFinite(seconds)) return "0:00";
+      var minutes = Math.floor(seconds / 60);
+      var secs = Math.floor(seconds % 60);
+      return minutes + ":" + (secs < 10 ? "0" + secs : secs);
+    }
+
+    function updateBtn(){
+      playBtn.textContent = audio.paused ? "▶ Play" : "❚❚ Pause";
+    }
+
+    function updateTime(){
+      var cur = audio.currentTime || 0;
+      var dur = audio.duration || 0;
+      var pct = dur ? Math.min(100, Math.max(0, (cur / dur) * 100)) : 0;
+      progress.style.width = pct + "%";
+      time.textContent = fmt(cur) + " / " + fmt(dur);
+    }
+
+    function setTrack(index, shouldPlay){
+      currentIndex = ((index % playlist.length) + playlist.length) % playlist.length;
+      var track = playlist[currentIndex];
+      safePause(audio);
+      audio.src = track.src;
+      titleEl.textContent = track.title;
+      audio.load();
+      audio.volume = parseFloat(vol.value || "0.18");
+      updateTime();
+      if (shouldPlay) tryStart();
+      else updateBtn();
+    }
+
+    function nextTrack(){
+      setTrack(currentIndex + 1, true);
+    }
+
+    function tryStart(){
+      sendStopSignal();
+      pauseOtherAudioOnPage();
+      audio.muted = false;
+      audio.volume = parseFloat(vol.value || "0.18");
+      var promise = audio.play();
+      if (promise && typeof promise.then === "function") {
+        promise.then(updateBtn).catch(updateBtn);
+      } else {
+        updateBtn();
+      }
+    }
+
+    function onPlayClick(event){
+      if (event) event.preventDefault();
+      if (audio.paused) tryStart();
+      else {
+        audio.pause();
+        updateBtn();
+      }
+    }
+
+    function onTriggerClick(event){
+      event.preventDefault();
+      wrap.scrollIntoView({ behavior: "smooth", block: "center" });
+      if (audio.paused) tryStart();
+    }
+
+    function onVolInput(){
+      audio.volume = parseFloat(vol.value || "0.18");
+    }
+
+    function onVisibility(){
+      if (document.hidden) {
+        safePause(audio);
+        updateBtn();
+      }
+    }
+
+    function cleanup(){
+      playBtn.removeEventListener("click", onPlayClick);
+      vol.removeEventListener("input", onVolInput);
+      audio.removeEventListener("timeupdate", updateTime);
+      audio.removeEventListener("loadedmetadata", updateTime);
+      audio.removeEventListener("play", updateBtn);
+      audio.removeEventListener("pause", updateBtn);
+      audio.removeEventListener("ended", nextTrack);
+      window.removeEventListener("storage", onStorage);
+      window.removeEventListener("pagehide", stopThisInstance);
+      window.removeEventListener("beforeunload", stopThisInstance);
+      document.removeEventListener("visibilitychange", onVisibility);
+      for (var i = 0; i < triggers.length; i += 1) {
+        triggers[i].removeEventListener("click", onTriggerClick);
+      }
+      try { if (bc) { bc.close(); bc = null; } } catch(e) {}
+      hardStop(audio);
+      if (window[KEY] && window[KEY].audio === audio) delete window[KEY];
+    }
+
+    try {
+      if ("BroadcastChannel" in window) {
+        bc = new BroadcastChannel(CHANNEL_NAME);
+        bc.onmessage = function(event){ onExternalStop(event.data); };
+      }
+    } catch(e) {}
+
+    playBtn.addEventListener("click", onPlayClick);
+    vol.addEventListener("input", onVolInput);
+    audio.addEventListener("timeupdate", updateTime);
+    audio.addEventListener("loadedmetadata", updateTime);
+    audio.addEventListener("play", updateBtn);
+    audio.addEventListener("pause", updateBtn);
+    audio.addEventListener("ended", nextTrack);
+    window.addEventListener("storage", onStorage);
+    window.addEventListener("pagehide", stopThisInstance);
+    window.addEventListener("beforeunload", stopThisInstance);
+    document.addEventListener("visibilitychange", onVisibility);
+    for (var i = 0; i < triggers.length; i += 1) {
+      triggers[i].addEventListener("click", onTriggerClick);
+    }
+
+    window[KEY] = { audio: audio, cleanup: cleanup };
+
+    setTrack(0, false);
+    tryStart();
+    updateBtn();
+    updateTime();
+  })();
+  </script>
   <script src="bmc_homepage_build/script.js?v=logo-revert-jazzycat-room-20260615"></script>
   <script src="bmc_homepage_build/home-schedule.js?v=logo-revert-jazzycat-room-20260615"></script>
 </body>
