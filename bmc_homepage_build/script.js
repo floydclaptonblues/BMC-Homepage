@@ -45,6 +45,7 @@ document.querySelector(".signup form")?.addEventListener("submit", (event) => {
 
 (function restoreHomepage(){
   const links = {
+    live: "https://bmclive.balconymusicclub.com/",
     home: "https://www.balconymusicclub.com/",
     shows: "https://shows.balconymusicclub.com/",
     host: "https://www.balconymusicclub.com/host-your-event",
@@ -83,9 +84,24 @@ document.querySelector(".signup form")?.addEventListener("submit", (event) => {
     else el.removeAttribute("rel");
   }
 
+  function placeBmcLiveFirst(){
+    const mainNav = document.querySelector(".main-nav");
+    if (!mainNav) return;
+    mainNav.querySelectorAll("a").forEach((a) => {
+      const label = (a.textContent || "").trim().toLowerCase();
+      if (label === "bmc live" || a.href === links.live) a.remove();
+    });
+    const live = document.createElement("a");
+    live.textContent = "BMC Live";
+    setLink(live, links.live);
+    mainNav.insertBefore(live, mainNav.firstChild);
+  }
+
   setLink(document.querySelector(".brand"), links.home);
+  placeBmcLiveFirst();
   document.querySelectorAll(".main-nav a").forEach((a)=>{
     const label=(a.textContent||"").trim().toLowerCase();
+    if(label==="bmc live")setLink(a,links.live);
     if(label==="home")setLink(a,links.home);
     if(label==="shows")setLink(a,links.shows);
     if(label==="host your event")setLink(a,links.host);
