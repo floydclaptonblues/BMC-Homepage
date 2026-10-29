@@ -139,6 +139,12 @@ function renderLiveCard(days, data) {
     scheduleEls.liveTitle.textContent = `${today ? "Tonight" : "Next Up"}: ${focus.date}`;
   }
 
+  if (focus.closed) {
+    if (scheduleEls.liveSubtitle) scheduleEls.liveSubtitle.textContent = focus.notice || 'Closed — no performances scheduled.';
+    if (scheduleEls.liveEvents) scheduleEls.liveEvents.innerHTML = `<div><dt>Holiday</dt><dd>${escapeHtml(focus.notice || 'Closed')}</dd></div>`;
+    return;
+  }
+
   const count = (focus.shows || []).length;
   if (scheduleEls.liveSubtitle) {
     scheduleEls.liveSubtitle.textContent = `${count} performance${count === 1 ? "" : "s"} scheduled. Times and artists subject to change.`;
@@ -159,7 +165,8 @@ function renderScheduleGrid(days, data) {
   const today = todayPartsForVenue();
 
   if (scheduleEls.summary) {
-    scheduleEls.summary.textContent = `${days.length} upcoming show days • ${eventCount} performances`;
+    const closureDays = days.filter((day) => day.closed).length;
+    scheduleEls.summary.textContent = `${days.length - closureDays} upcoming show days • ${eventCount} performances${closureDays ? ` • ${closureDays} closure notice${closureDays === 1 ? '' : 's'}` : ''}`;
   }
 
   if (scheduleEls.source) {
@@ -176,6 +183,7 @@ function renderScheduleGrid(days, data) {
     <article class="schedule-day-card">
       <h3>${escapeHtml(day.date)}</h3>
       <div class="schedule-day-events">
+        ${day.closed ? `<p class="schedule-empty">${escapeHtml(day.notice || 'Closed — no performances scheduled.')}</p>` : ''}
         ${(day.shows || []).map((show) => `
           <div class="schedule-event${show.headliner ? " is-headliner" : ""}">
             <time>${escapeHtml(show.time)}</time>
