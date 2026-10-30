@@ -73,6 +73,9 @@ function todayKeyForVenue() {
 }
 
 function showDayKey(day, data) {
+  if (typeof day.isoDate === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(day.isoDate)) {
+    return Number(day.isoDate.replaceAll('-', ''));
+  }
   const match = String(day.date || "").match(/\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})\b/i);
   if (!match) return null;
 
@@ -147,7 +150,8 @@ function renderLiveCard(days, data) {
 
   const count = (focus.shows || []).length;
   if (scheduleEls.liveSubtitle) {
-    scheduleEls.liveSubtitle.textContent = `${count} performance${count === 1 ? "" : "s"} scheduled. Times and artists subject to change.`;
+    const notice = String(data.announcement || '').trim();
+    scheduleEls.liveSubtitle.textContent = `${count} performance${count === 1 ? "" : "s"} scheduled. Times and artists subject to change.` + (notice ? ' · '+notice : '');
   }
 
   if (scheduleEls.liveEvents) {
